@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import type { GitHubContributionsResponse } from "@/types/github";
 
 type GitHubContributionGraphProps = {
@@ -5,11 +7,23 @@ type GitHubContributionGraphProps = {
 };
 
 const weekdayLabels = ["", "Mon", "", "Wed", "", "Fri", ""];
-const legendColors = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
+const darkEmptyContributionColor = "oklch(0.105 0.008 255)";
+const legendColors = [
+  { light: "#ebedf0", dark: darkEmptyContributionColor },
+  { light: "#9be9a8", dark: "#9be9a8" },
+  { light: "#40c463", dark: "#40c463" },
+  { light: "#30a14e", dark: "#30a14e" },
+  { light: "#216e39", dark: "#216e39" },
+];
 const monthFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
   timeZone: "UTC",
 });
+
+type ContributionCellStyle = CSSProperties & {
+  "--contribution-color": string;
+  "--contribution-dark-color": string;
+};
 
 function toUtcDate(date: string) {
   return new Date(`${date}T00:00:00.000Z`);
@@ -19,6 +33,10 @@ function getContributionTitle(count: number, date: string) {
   const noun = count === 1 ? "contribution" : "contributions";
 
   return `${count} ${noun} on ${date}`;
+}
+
+function getContributionDarkColor(count: number, color: string) {
+  return count === 0 ? darkEmptyContributionColor : color;
 }
 
 function getMonthLabel(
@@ -59,10 +77,15 @@ export function GitHubContributionGraph({
           <span>Less</span>
           {legendColors.map((color) => (
             <span
-              key={color}
+              key={color.light}
               aria-hidden="true"
-              className="size-3 rounded-[2px] border border-black/5 dark:border-white/10"
-              style={{ backgroundColor: color }}
+              className="size-3 rounded-[2px] border border-black/5 bg-[var(--contribution-color)] dark:border-white/10 dark:bg-[var(--contribution-dark-color)]"
+              style={
+                {
+                  "--contribution-color": color.light,
+                  "--contribution-dark-color": color.dark,
+                } as ContributionCellStyle
+              }
             />
           ))}
           <span>More</span>
@@ -111,11 +134,15 @@ export function GitHubContributionGraph({
                         day.contributionCount,
                         day.date,
                       )}
-                      className="size-3 rounded-[2px] border border-black/5 dark:border-white/10"
+                      className="size-3 rounded-[2px] border border-black/5 bg-[var(--contribution-color)] dark:border-white/10 dark:bg-[var(--contribution-dark-color)]"
                       style={{
-                        backgroundColor: day.color,
+                        "--contribution-color": day.color,
+                        "--contribution-dark-color": getContributionDarkColor(
+                          day.contributionCount,
+                          day.color,
+                        ),
                         gridRowStart: day.weekday + 1,
-                      }}
+                      } as ContributionCellStyle}
                     />
                   ))}
                 </div>

@@ -25,8 +25,8 @@ export default function ContactPage() {
               Direct channels
             </h2>
             <p className="text-sm leading-7 text-muted-foreground">
-              A simple placeholder contact endpoint is wired in. Replace it with your
-              preferred email or notification integration when you’re ready.
+              The form sends directly to email. If you prefer a direct path, these
+              links stay close at hand.
             </p>
           </div>
           <ul className="space-y-3">
