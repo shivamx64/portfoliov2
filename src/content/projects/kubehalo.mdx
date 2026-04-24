@@ -1,0 +1,40 @@
+---
+title: KubeHalo
+excerpt: A Kubernetes-focused platform toolkit for safer cluster workflows, controlled rollouts, and repeatable operations.
+publishedAt: "2026-03-12"
+tags:
+  - kubernetes
+  - platform engineering
+  - control planes
+featured: true
+status: Active build
+role: Creator and maintainer
+timeline: 2025 - Present
+stack:
+  - Go
+  - Kubernetes
+  - Helm
+  - Prometheus
+links:
+  - label: GitHub
+    href: https://github.com/example/kubehalo
+  - label: Read the contact page
+    href: /contact
+metrics:
+  - Reduced repetitive cluster bootstrap steps into a single declarative workflow.
+  - Centralized operational checks for platform teams handling multiple environments.
+---
+
+## Why I built it
+
+KubeHalo started as a way to make common cluster workflows less fragile. I wanted a place to encode guardrails, release patterns, and routine reconciliation logic without turning every operational task into bespoke glue code.
+
+## Core ideas
+
+- Treat cluster workflows as product surfaces, not internal chores.
+- Make safe defaults visible in the control flow rather than hidden in docs.
+- Keep the architecture simple enough that platform engineers can debug it under pressure.
+
+## What this implementation explores
+
+The project focuses on control loops, release orchestration, and how far you can push a small set of opinionated abstractions before they become a platform instead of a script collection.

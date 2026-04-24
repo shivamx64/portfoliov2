@@ -1,0 +1,19 @@
+---
+title: Compaction without surprises
+excerpt: A short note on why storage-engine maintenance matters to application behavior long before users know the term LSM tree.
+publishedAt: "2026-03-02"
+tags:
+  - databases
+  - storage engines
+  - performance
+featured: false
+category: databases
+---
+
+## Hidden behavior
+
+Compaction is easy to treat as implementation detail until it shows up in latency. Then it stops feeling hidden very quickly. The systems that age well are the ones where maintenance work is part of the design conversation from the beginning.
+
+## Operational intuition
+
+When you understand where write amplification and read amplification come from, you start designing application workloads more honestly. That usually leads to better expectations and fewer mysterious incidents.

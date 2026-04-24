@@ -1,0 +1,97 @@
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    position: relative;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--foreground);
+    font-feature-settings:
+      "ss01" 1,
+      "cv02" 1,
+      "cv03" 1;
+  }
+
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  body::before {
+    background-image:
+      linear-gradient(to bottom, var(--texture-grid) 1px, transparent 1px),
+      linear-gradient(to right, var(--texture-grid) 1px, transparent 1px),
+      radial-gradient(circle at 1px 1px, var(--texture-dot) 1px, transparent 0);
+    background-size:
+      72px 72px,
+      72px 72px,
+      18px 18px;
+    background-position: center top;
+    opacity: 0.5;
+  }
+
+  body::after {
+    background:
+      radial-gradient(circle at 14% 10%, color-mix(in oklab, var(--paper-accent) 40%, transparent) 0%, transparent 20%),
+      radial-gradient(circle at 86% 0%, color-mix(in oklab, var(--primary) 12%, transparent) 0%, transparent 24%),
+      linear-gradient(180deg, color-mix(in oklab, white 36%, transparent), transparent 42%);
+    opacity: 0.8;
+  }
+
+  .dark body::after {
+    background:
+      radial-gradient(circle at 12% 12%, rgb(255 255 255 / 0.025) 0%, transparent 18%),
+      radial-gradient(circle at 84% 0%, rgb(125 211 252 / 0.05) 0%, transparent 22%),
+      linear-gradient(180deg, rgb(255 255 255 / 0.018), transparent 38%);
+    opacity: 0.7;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 20%, transparent);
+  }
+}
+
+@layer utilities {
+  .section-anchor {
+    scroll-margin-top: 6rem;
+  }
+
+  .content-width {
+    @apply mx-auto w-full max-w-5xl px-5 sm:px-8;
+  }
+
+  .content-width-narrow {
+    @apply mx-auto w-full max-w-3xl px-5 sm:px-8;
+  }
+
+  .content-width-wide {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .surface-panel {
+    @apply border-y border-border/60 bg-transparent;
+  }
+
+  .surface-subtle {
+    @apply rounded-2xl border border-border/70 bg-card/45;
+  }
+
+  .eyebrow {
+    @apply font-heading text-[0.68rem] font-medium uppercase tracking-[0.24em] text-muted-foreground;
+  }
+
+  .section-divider {
+    @apply border-t border-border/60;
+  }
+
+  .paper-dots {
+    background-image: radial-gradient(circle, var(--texture-dot-strong) 1px, transparent 1.35px);
+    background-size: 14px 14px;
+  }
+}

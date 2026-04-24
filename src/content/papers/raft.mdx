@@ -1,0 +1,31 @@
+---
+title: Raft, with implementation notes
+excerpt: Building a small Raft prototype to understand term changes, leader election timing, and log replication edge cases.
+publishedAt: "2026-04-10"
+tags:
+  - consensus
+  - distributed systems
+  - raft
+featured: true
+kind: implementation
+sourcePaper: "Diego Ongaro and John Ousterhout, In Search of an Understandable Consensus Algorithm"
+paperUrl: https://raft.github.io/raft.pdf
+focus: Leader election timing, replication safety, and state transitions.
+links:
+  - label: Original paper
+    href: https://raft.github.io/raft.pdf
+---
+
+## Why this paper matters
+
+Raft is one of those papers that feels approachable until you try to encode the transitions precisely. Implementing it is a fast way to discover how many details sit behind the word understandable.
+
+## Implementation pressure points
+
+- Election timing is conceptually easy and practically delicate.
+- Log matching rules force discipline into every append path.
+- State transitions need to be explicit or bugs get buried in optimistic assumptions.
+
+## Personal note
+
+This implementation has been especially useful for improving how I think about failure modes, especially when a system is technically healthy but still carrying stale assumptions about leadership.

@@ -1,0 +1,40 @@
+---
+title: GoFlowQ
+excerpt: A durable queue and worker runtime for experimenting with retries, leases, and predictable background processing.
+publishedAt: "2026-02-02"
+tags:
+  - go
+  - queues
+  - distributed systems
+featured: true
+status: Research project
+role: Builder
+timeline: 2025 - Present
+stack:
+  - Go
+  - PostgreSQL
+  - Redis
+  - OpenTelemetry
+links:
+  - label: GitHub
+    href: https://github.com/example/goflowq
+  - label: Blog
+    href: /blog/backend/first-post
+metrics:
+  - Explores queue durability and idempotency without depending on a large broker.
+  - Makes worker behavior observable by design through structured events and metrics.
+---
+
+## Problem framing
+
+Many background job systems feel straightforward until failure cases start stacking up. GoFlowQ is where I test the mechanics that make a worker system reliable in the unhappy path: leases, retries, stuck job detection, and clear recovery rules.
+
+## Design constraints
+
+- Prefer understandable scheduling over opaque magic.
+- Make retries explicit so operators can reason about load.
+- Preserve enough metadata to explain why a job is still running, delayed, or dead-lettered.
+
+## Current direction
+
+I am using the project to compare storage-backed queues with broker-backed approaches and to sharpen intuition around worker isolation, scheduling fairness, and delivery guarantees.

@@ -1,12 +1,12 @@
-export type NavItem = {
+export type ContentLink = {
   href: string;
   label: string;
 };
 
-export type SocialLink = {
-  href: string;
-  label: string;
-  value: string;
+export type CurrentFocusItem = {
+  title: string;
+  description: string;
+  detail: string;
 };
 
 export type ExperienceEntry = {
@@ -15,29 +15,9 @@ export type ExperienceEntry = {
   location: string;
   period: string;
   summary: string;
-  achievements: string[];
-  technologies: string[];
-  url?: string;
-};
-
-export type ProjectLink = {
-  href: string;
-  label: string;
-};
-
-export type ProjectEntry = {
-  slug: string;
-  title: string;
-  summary: string;
-  description: string;
-  year: string;
-  status: string;
-  featured: boolean;
-  stack: string[];
   highlights: string[];
-  metrics: string[];
-  image: string;
-  links: ProjectLink[];
+  stack: string[];
+  url?: string;
 };
 
 export type BaseContentFrontmatter = {
@@ -55,10 +35,23 @@ export type BlogFrontmatter = BaseContentFrontmatter & {
   category: string;
 };
 
+export type PaperKind = "implementation" | "reading-note";
+
 export type PaperFrontmatter = BaseContentFrontmatter & {
-  paperUrl: string;
+  kind: PaperKind;
   sourcePaper: string;
+  paperUrl: string;
   focus: string;
+  links?: ContentLink[];
+};
+
+export type ProjectFrontmatter = BaseContentFrontmatter & {
+  status: string;
+  role: string;
+  timeline: string;
+  stack: string[];
+  links: ContentLink[];
+  metrics: string[];
 };
 
 export type ContentHeading = {
@@ -74,29 +67,4 @@ export type ContentEntry<TFrontmatter> = TFrontmatter & {
   readingTime: string;
   headings: ContentHeading[];
   content: string;
-};
-
-export type GithubActivity = {
-  profile: {
-    username: string;
-    followers: number;
-    publicRepos: number;
-  };
-  highlights: Array<{
-    label: string;
-    value: string;
-  }>;
-  recentEvents: Array<{
-    id: string;
-    type: string;
-    repo: string;
-    createdAt: string;
-    url?: string;
-  }>;
-};
-
-export type ContactFormValues = {
-  name: string;
-  email: string;
-  message: string;
 };

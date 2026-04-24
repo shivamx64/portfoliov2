@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F6F3EE"/>
+  <rect x="48" y="48" width="1104" height="534" rx="32" fill="#FCFBF8" stroke="#DBD7D1"/>
+  <circle cx="960" cy="162" r="78" fill="#E9E5DE"/>
+  <circle cx="1020" cy="480" r="120" fill="#ECE8E1"/>
+  <path d="M112 170H468" stroke="#C4C0BA" stroke-width="2"/>
+  <path d="M112 456H1088" stroke="#E1DDD7" stroke-width="2"/>
+  <path d="M112 512H640" stroke="#E1DDD7" stroke-width="2"/>
+  <text x="112" y="230" fill="#202532" font-family="Manrope, Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-1.8">
+    Shivam Jha
+  </text>
+  <text x="112" y="294" fill="#4C566A" font-family="IBM Plex Mono, monospace" font-size="24" letter-spacing="2.4">
+    BACKEND AND CLOUD ENGINEER
+  </text>
+  <text x="112" y="360" fill="#384152" font-family="Manrope, Arial, sans-serif" font-size="30" letter-spacing="-0.6">
+    Distributed systems, Kubernetes, platform engineering,
+  </text>
+  <text x="112" y="404" fill="#384152" font-family="Manrope, Arial, sans-serif" font-size="30" letter-spacing="-0.6">
+    databases, and paper implementations.
+  </text>
+</svg>

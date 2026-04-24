@@ -1,4 +1,4 @@
-import type { CompileOptions } from "next-mdx-remote/types";
+import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import GithubSlugger from "github-slugger";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -6,7 +6,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import type { ContentHeading } from "@/types/content";
 
-export const mdxOptions: CompileOptions = {
+export const mdxOptions: MDXRemoteProps["options"] = {
   parseFrontmatter: false,
   mdxOptions: {
     remarkPlugins: [remarkGfm],

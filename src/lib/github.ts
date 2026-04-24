@@ -2,108 +2,195 @@ import "server-only";
 
 import { cache } from "react";
 
-import { siteConfig } from "@/config/site";
-import type { GithubActivity } from "@/types/content";
+import { GITHUB_REVALIDATE_SECONDS } from "@/lib/constants";
+import type {
+  GitHubContributionDay,
+  GitHubContributionsResponse,
+} from "@/types/github";
 
-const fallbackActivity: GithubActivity = {
-  profile: {
-    username: siteConfig.githubUsername,
-    followers: 182,
-    publicRepos: 37,
-  },
-  highlights: [
-    { label: "Focus", value: "Frontend systems" },
-    { label: "Current streak", value: "5 shipped experiments" },
-    { label: "Writing cadence", value: "2 notes / month" },
-  ],
-  recentEvents: [
-    {
-      id: "1",
-      type: "Pushed commits",
-      repo: "portfolio-lab/app-shell",
-      createdAt: "2026-04-20T09:30:00.000Z",
-      url: "https://github.com/sagethefox/portfolio-lab",
-    },
-    {
-      id: "2",
-      type: "Opened a PR",
-      repo: "systems-notes/mdx-content",
-      createdAt: "2026-04-18T12:10:00.000Z",
-      url: "https://github.com/sagethefox/systems-notes",
-    },
-    {
-      id: "3",
-      type: "Published release",
-      repo: "design-engineering/ui-foundations",
-      createdAt: "2026-04-14T05:15:00.000Z",
-      url: "https://github.com/sagethefox/design-engineering",
-    },
-  ],
+const GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql";
+
+const GITHUB_CONTRIBUTIONS_QUERY = /* GraphQL */ `
+  query($username: String!) {
+    user(login: $username) {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              date
+              weekday
+              contributionCount
+              color
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+type GitHubGraphQLError = {
+  message: string;
 };
 
-function mapEventType(type: string) {
-  const labels: Record<string, string> = {
-    PushEvent: "Pushed commits",
-    PullRequestEvent: "Opened a PR",
-    CreateEvent: "Created a branch or repo",
-    ReleaseEvent: "Published release",
+type GitHubGraphQLContributionsPayload = {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: GitHubContributionsResponse;
+      };
+    } | null;
   };
+  errors?: GitHubGraphQLError[];
+};
 
-  return labels[type] ?? "Activity";
+type GitHubConfig = {
+  username: string;
+  token: string;
+};
+
+export class GitHubContributionsError extends Error {
+  statusCode: number;
+
+  constructor(message: string, statusCode = 500) {
+    super(message);
+    this.name = "GitHubContributionsError";
+    this.statusCode = statusCode;
+  }
 }
 
-export const getGithubActivity = cache(async (): Promise<GithubActivity> => {
-  const username = siteConfig.githubUsername;
+function getGitHubConfig(): GitHubConfig {
+  const username = process.env.GITHUB_USERNAME?.trim();
+  const token = process.env.GITHUB_TOKEN?.trim();
+
+  if (!username) {
+    throw new GitHubContributionsError(
+      "Missing GITHUB_USERNAME. Add it to your environment to load GitHub contributions.",
+    );
+  }
+
+  if (!token) {
+    throw new GitHubContributionsError(
+      "Missing GITHUB_TOKEN. Add a server-side GitHub token to load contributions.",
+    );
+  }
+
+  return { username, token };
+}
+
+async function readGitHubError(response: Response) {
+  const body = await response.text();
+
+  if (!body) {
+    return "";
+  }
 
   try {
-    const [profileResponse, eventsResponse] = await Promise.all([
-      fetch(`https://api.github.com/users/${username}`, {
-        headers: {
-          Accept: "application/vnd.github+json",
-          "User-Agent": `${siteConfig.name}-portfolio`,
-        },
-        next: { revalidate: 3600 },
-      }),
-      fetch(`https://api.github.com/users/${username}/events/public?per_page=5`, {
-        headers: {
-          Accept: "application/vnd.github+json",
-          "User-Agent": `${siteConfig.name}-portfolio`,
-        },
-        next: { revalidate: 3600 },
-      }),
-    ]);
+    const parsed = JSON.parse(body) as { message?: string };
 
-    if (!profileResponse.ok || !eventsResponse.ok) {
-      return fallbackActivity;
+    return parsed.message ? `: ${parsed.message}` : "";
+  } catch {
+    return `: ${body.slice(0, 200)}`;
+  }
+}
+
+function normalizeContributionDay(
+  day: GitHubContributionDay,
+): GitHubContributionDay {
+  return {
+    date: day.date,
+    weekday: day.weekday,
+    contributionCount: day.contributionCount,
+    color: day.color,
+  };
+}
+
+function normalizeContributions(
+  calendar: GitHubContributionsResponse,
+): GitHubContributionsResponse {
+  return {
+    totalContributions: calendar.totalContributions,
+    weeks: calendar.weeks.map((week) => ({
+      contributionDays: week.contributionDays.map(normalizeContributionDay),
+    })),
+  };
+}
+
+export const getGitHubContributions = cache(
+  async (): Promise<GitHubContributionsResponse> => {
+    const { username, token } = getGitHubConfig();
+
+    let response: Response;
+
+    try {
+      response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          "User-Agent": "shivam-jha-portfolio",
+        },
+        body: JSON.stringify({
+          query: GITHUB_CONTRIBUTIONS_QUERY,
+          variables: { username },
+        }),
+        next: { revalidate: GITHUB_REVALIDATE_SECONDS },
+      });
+    } catch {
+      throw new GitHubContributionsError(
+        "Unable to reach the GitHub GraphQL API.",
+        502,
+      );
     }
 
-    const profile = (await profileResponse.json()) as {
-      followers: number;
-      public_repos: number;
-      login: string;
-    };
-    const events = (await eventsResponse.json()) as Array<{
-      id: string;
-      type: string;
-      repo: { name: string };
-      created_at: string;
-    }>;
+    if (!response.ok) {
+      const errorDetails = await readGitHubError(response);
 
-    return {
-      profile: {
-        username: profile.login,
-        followers: profile.followers,
-        publicRepos: profile.public_repos,
-      },
-      highlights: fallbackActivity.highlights,
-      recentEvents: events.slice(0, 3).map((event) => ({
-        id: event.id,
-        type: mapEventType(event.type),
-        repo: event.repo.name,
-        createdAt: event.created_at,
-      })),
-    };
-  } catch {
-    return fallbackActivity;
-  }
-});
+      throw new GitHubContributionsError(
+        `GitHub GraphQL API request failed with status ${response.status}${errorDetails}`,
+        502,
+      );
+    }
+
+    let payload: GitHubGraphQLContributionsPayload;
+
+    try {
+      payload = (await response.json()) as GitHubGraphQLContributionsPayload;
+    } catch {
+      throw new GitHubContributionsError(
+        "GitHub returned an invalid JSON response.",
+        502,
+      );
+    }
+
+    if (payload.errors?.length) {
+      const messages = payload.errors.map((error) => error.message).join("; ");
+
+      throw new GitHubContributionsError(
+        `GitHub GraphQL error: ${messages}`,
+        502,
+      );
+    }
+
+    if (!payload.data?.user) {
+      throw new GitHubContributionsError(
+        `GitHub user "${username}" was not found.`,
+        404,
+      );
+    }
+
+    const calendar =
+      payload.data.user.contributionsCollection?.contributionCalendar;
+
+    if (!calendar) {
+      throw new GitHubContributionsError(
+        "GitHub did not return contribution calendar data.",
+        502,
+      );
+    }
+
+    return normalizeContributions(calendar);
+  },
+);

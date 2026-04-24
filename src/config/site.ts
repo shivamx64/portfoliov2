@@ -1,58 +1,77 @@
-import type { NavItem, SocialLink } from "@/types/content";
-
 export const siteConfig = {
-  name: "Your Name",
-  firstName: "Your",
-  title: "Frontend engineer building thoughtful interfaces and durable systems.",
-  shortTitle: "Frontend engineer and design-focused builder",
+  name: "Shivam Jha",
+  firstName: "Shivam",
+  role: "Backend and cloud engineer",
+  title:
+    "Backend and cloud engineer building durable systems, thoughtful tooling, and paper-backed engineering notes.",
+  shortTitle: "Backend, cloud, and distributed systems engineer",
   description:
-    "Personal portfolio, writing hub, and long-form notebook for projects, paper implementations, and engineering notes.",
-  email: "hello@example.com",
+    "Personal engineering portfolio and technical writing platform focused on distributed systems, Kubernetes, platform engineering, databases, and paper implementations.",
+  email: "shivam@engineering-notes.dev",
   location: "Bengaluru, India",
-  githubUsername: "sagethefox",
-  domain: "https://example.com",
-  resumePath: "/resume/your-name-resume.pdf",
-  status: "Currently open to senior frontend and product engineering roles.",
+  githubUsername:
+    process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "shivam-jha-engineering",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivam-jha.dev",
+  resumePath: "/resume/shivam-jha-resume.pdf",
+  status: "Open to backend, platform, and infrastructure engineering opportunities.",
+  keywords: [
+    "Shivam Jha",
+    "backend engineer",
+    "cloud engineer",
+    "distributed systems",
+    "Kubernetes",
+    "DevOps",
+    "platform engineering",
+    "databases",
+    "paper implementations",
+    "technical writing",
+  ],
   hero: {
-    eyebrow: "Portfolio, notes, and engineering writing",
+    eyebrow: "Portfolio, systems notes, and technical writing",
     intro:
-      "I design and build fast, deliberate web experiences with a bias toward clarity, maintainability, and systems thinking.",
+      "I build backend platforms and cloud systems with a bias toward reliability, clean interfaces, and implementation-first learning.",
     subcopy:
-      "This site is my working portfolio and long-term publishing space for implementation notes, blog essays, and paper-backed experiments.",
+      "This site is my long-term home for projects, paper implementations, engineering notes, and the kind of writing that only gets better with time.",
   },
+  currentFocus: [
+    {
+      title: "Distributed systems from first principles",
+      description:
+        "Rebuilding ideas from foundational papers to understand tradeoffs instead of memorizing conclusions.",
+      detail:
+        "Current threads: replication, coordination, fault tolerance, and stateful workflows.",
+    },
+    {
+      title: "Kubernetes and platform tooling",
+      description:
+        "Designing internal tools that make infrastructure safer, faster, and easier for product teams to use.",
+      detail:
+        "Current threads: control loops, release automation, cluster guardrails, and observability defaults.",
+    },
+    {
+      title: "Databases and systems performance",
+      description:
+        "Studying data-intensive systems to build stronger intuition around storage engines, queues, and consistency.",
+      detail:
+        "Current threads: LSM trees, durable queues, latency budgets, and write-heavy workloads.",
+    },
+  ],
   about: {
     summary:
-      "I care about the part of engineering where visual quality, product judgment, and code quality all have to hold up at the same time.",
+      "I care about the layer where backend architecture, platform ergonomics, and everyday developer experience all meet.",
+    paragraphs: [
+      "My work lives close to the operational edge of software: services, deployment systems, cluster tooling, internal platforms, and the documentation that helps teams move with confidence.",
+      "I like products that are both technically serious and easy to live with. That means clear interfaces, pragmatic abstractions, and a steady habit of writing through decisions instead of hiding them.",
+    ],
     principles: [
-      "Design systems should reduce entropy, not flatten personality.",
-      "A good interface feels obvious without feeling generic.",
-      "Readable code is part of the product experience for the team.",
+      "A platform earns trust when it makes the safe path the easy path.",
+      "Good systems writing is part of the engineering work, not documentation debt.",
+      "Paper implementations are one of the fastest ways to sharpen engineering judgment.",
     ],
   },
+  contact: {
+    title: "Let’s talk about systems work that needs care.",
+    description:
+      "If you’re building infrastructure, internal platforms, or backend-heavy products, I’d be glad to connect.",
+  },
 } as const;
-
-export const navigationItems: NavItem[] = [
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
-  { href: "/papers", label: "Papers" },
-  { href: "/contact", label: "Contact" },
-];
-
-export const socialLinks: SocialLink[] = [
-  {
-    href: "https://github.com/sagethefox",
-    label: "GitHub",
-    value: "@sagethefox",
-  },
-  {
-    href: "https://www.linkedin.com/in/your-name",
-    label: "LinkedIn",
-    value: "/in/your-name",
-  },
-  {
-    href: "mailto:hello@example.com",
-    label: "Email",
-    value: "hello@example.com",
-  },
-];

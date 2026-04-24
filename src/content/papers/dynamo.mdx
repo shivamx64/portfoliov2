@@ -1,0 +1,31 @@
+---
+title: Reading Dynamo as a systems design lens
+excerpt: Notes on Dynamo’s partitioning, replication, and availability tradeoffs, with a focus on how the design still shapes modern systems thinking.
+publishedAt: "2026-01-22"
+tags:
+  - databases
+  - distributed systems
+  - reading notes
+featured: true
+kind: reading-note
+sourcePaper: "Giuseppe DeCandia et al., Dynamo: Amazon’s Highly Available Key-value Store"
+paperUrl: https://www.amazon.science/publications/dynamo-amazons-highly-available-key-value-store
+focus: Availability-first design, replication tradeoffs, and operational complexity.
+links:
+  - label: Original paper
+    href: https://www.amazon.science/publications/dynamo-amazons-highly-available-key-value-store
+---
+
+## Why I keep coming back to Dynamo
+
+Dynamo is useful beyond the specifics of its implementation. It is a paper about choosing what to optimize for, then accepting the consequences honestly. That is a valuable systems design habit.
+
+## What stood out on this read
+
+- Availability decisions leak into everything from APIs to operator workflows.
+- Conflict resolution is not a side concern when you embrace eventual consistency.
+- The paper is strongest when read as a statement about tradeoffs, not as a recipe.
+
+## What I would pair it with
+
+I like reading Dynamo next to more coordination-heavy systems because the contrast sharpens how different assumptions shape the rest of the architecture.

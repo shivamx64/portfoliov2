@@ -1,0 +1,19 @@
+---
+title: Reconciliation loops that do not fight operators
+excerpt: Notes on building Kubernetes control loops that converge reliably while still leaving humans room to understand and intervene.
+publishedAt: "2026-02-18"
+tags:
+  - kubernetes
+  - operators
+  - control loops
+featured: false
+category: kubernetes
+---
+
+## Convergence is not enough
+
+A loop can technically converge and still be unpleasant to operate. If the control flow is opaque, if status is vague, or if remediation requires folklore, then the abstraction is doing less than it should.
+
+## What I optimize for
+
+I want controller behavior that is legible under stress. That means clear conditions, conservative retries, and a status surface that explains what the controller thinks it is doing.

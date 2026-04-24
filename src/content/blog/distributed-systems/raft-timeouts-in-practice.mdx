@@ -1,0 +1,23 @@
+---
+title: Raft timeouts in practice
+excerpt: What changed in my understanding of Raft after implementing leader election loops instead of only reading the paper.
+publishedAt: "2026-04-05"
+tags:
+  - distributed systems
+  - raft
+  - consensus
+featured: true
+category: distributed systems
+---
+
+## Reading versus implementing
+
+The paper makes election timeouts feel almost cosmetic. The implementation makes it obvious they are structural. Small differences in timing discipline affect how often the cluster churns, how noisy logs become, and how quickly trust in the system erodes.
+
+## What I changed my mind about
+
+I used to think the primary job of the timeout was preventing split votes. In practice, it also becomes a statement about how quickly the system is allowed to doubt itself.
+
+## The engineering lesson
+
+Parameters that look operational often carry product meaning. If users experience leadership churn as instability, then tuning timeouts is not a low-level concern. It is part of the interface.

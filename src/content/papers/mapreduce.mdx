@@ -1,0 +1,31 @@
+---
+title: MapReduce, rebuilt for intuition
+excerpt: Re-implementing the MapReduce execution model to understand scheduling, fault handling, and data locality from the inside.
+publishedAt: "2026-03-28"
+tags:
+  - distributed systems
+  - paper implementation
+  - mapreduce
+featured: true
+kind: implementation
+sourcePaper: "Jeffrey Dean and Sanjay Ghemawat, MapReduce: Simplified Data Processing on Large Clusters"
+paperUrl: https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/
+focus: Task scheduling, worker coordination, and failure recovery.
+links:
+  - label: Original paper
+    href: https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/
+---
+
+## What I wanted to learn
+
+MapReduce looks simple when presented as a programming model. The implementation details are where the real lessons live: how work gets partitioned, how failed tasks are replayed, and why data locality matters once scale appears.
+
+## Main takeaways
+
+- The scheduler is where a large part of system behavior becomes visible.
+- Simple retry rules become expensive if task bookkeeping is weak.
+- Good intermediate file conventions make the overall system easier to reason about.
+
+## Where I would take it next
+
+The next iteration would add clearer worker heartbeats and more realistic handling of stragglers so I can compare coordinator behavior under skewed workloads.
