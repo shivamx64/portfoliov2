@@ -6,6 +6,7 @@ import { GithubActivitySection } from "@/components/home/github-activity-section
 import { HeroSection } from "@/components/home/hero-section";
 import { PaperImplementationsSection } from "@/components/home/paper-implementations-section";
 import { RecentBlogsSection } from "@/components/home/recent-blogs-section";
+import { TechStackSection } from "@/components/home/tech-stack-section";
 import { experienceEntries } from "@/content/experience/experience";
 import { HOME_COLLECTION_LIMITS } from "@/lib/constants";
 import {
@@ -28,6 +29,7 @@ export default async function HomePage() {
       <HeroSection />
       <CurrentFocusSection />
       <ExperienceSection experience={experienceEntries} />
+      <TechStackSection />
       <GithubActivitySection />
       <FeaturedProjectsSection projects={projects} />
       <PaperImplementationsSection papers={papers} />

@@ -10,6 +10,11 @@ export function CurrentFocusSection() {
     >
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
         <div className="space-y-5 text-[1rem] leading-8 text-foreground/84">
+          <div className="inline-flex items-center gap-2 border border-emerald-500/35 bg-emerald-500/8 px-3 py-1.5 font-mono text-xs text-emerald-700 dark:text-emerald-300">
+            <span className="size-2 rounded-full bg-emerald-500" />
+            {siteConfig.availability}
+          </div>
+
           {siteConfig.about.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

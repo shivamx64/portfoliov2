@@ -14,6 +14,13 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivam-jha.dev",
   resumePath: "/resume/shivam-jha-resume.pdf",
   status: "Open to backend, platform, and infrastructure engineering opportunities.",
+  availability: "Open to work · Immediately",
+  heroBadges: [
+    "Bengaluru, India",
+    "Backend systems",
+    "Cloud platforms",
+    "Technical writing",
+  ],
   keywords: [
     "Shivam Jha",
     "backend engineer",
@@ -67,6 +74,33 @@ export const siteConfig = {
       "A platform earns trust when it makes the safe path the easy path.",
       "Good systems writing is part of the engineering work, not documentation debt.",
       "Paper implementations are one of the fastest ways to sharpen engineering judgment.",
+    ],
+  },
+  skills: {
+    groups: [
+      {
+        label: "Languages",
+        items: ["TypeScript", "Go", "Python", "SQL", "Bash"],
+      },
+      {
+        label: "Frontend and APIs",
+        items: ["React", "Next.js", "GraphQL", "REST", "MDX"],
+      },
+      {
+        label: "Cloud and infrastructure",
+        items: [
+          "Docker",
+          "Kubernetes",
+          "AWS",
+          "Terraform",
+          "Ansible",
+          "CI/CD",
+        ],
+      },
+      {
+        label: "Observability and operations",
+        items: ["Prometheus", "OpenTelemetry", "Datadog", "Grafana", "Linux"],
+      },
     ],
   },
   contact: {
