@@ -1,11 +1,13 @@
+import { BlogLayout } from "@/components/blog/blog-layout";
 import { BlogList } from "@/components/blog/blog-list";
 import { PageHeader } from "@/components/shared/page-header";
-import { getBlogPosts } from "@/lib/content";
+import { blogConfig } from "@/config/blog";
+import { getBlogPosts } from "@/lib/blog";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Blog",
-  description: "Technical writing on backend systems, distributed systems, databases, and Kubernetes.",
+  title: blogConfig.title,
+  description: blogConfig.description,
   pathname: "/blog",
 });
 
@@ -13,15 +15,15 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8">
       <PageHeader
         eyebrow="Blog"
-        title="Writing that stays close to the engineering work"
-        description="Notes and long-form posts on backend systems, platform engineering, distributed systems, databases, and Kubernetes."
+        title="Technical writing, close to the work"
+        description={blogConfig.description}
       />
-      <div className="content-width">
+      <BlogLayout>
         <BlogList posts={posts} />
-      </div>
+      </BlogLayout>
     </div>
   );
 }

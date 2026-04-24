@@ -8,8 +8,13 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 import { z } from "zod";
 
+import {
+  getBlogPostBySlug,
+  getBlogPosts,
+  getFeaturedBlogPosts,
+  getRecentBlogPosts,
+} from "@/lib/blog";
 import type {
-  BlogFrontmatter,
   ContentEntry,
   ContentLink,
   ProjectFrontmatter,
@@ -34,10 +39,6 @@ const baseFrontmatterSchema = z.object({
   draft: z.boolean().default(false),
   coverImage: z.string().optional(),
 });
-
-const blogFrontmatterSchema = baseFrontmatterSchema.extend({
-  category: z.string(),
-}) satisfies z.ZodType<BlogFrontmatter>;
 
 const projectFrontmatterSchema = baseFrontmatterSchema.extend({
   status: z.string(),
@@ -127,10 +128,6 @@ async function readCollection<TFrontmatter extends { publishedAt: string; draft?
   return sortByDate(entries).filter((entry) => !entry.draft);
 }
 
-export const getBlogPosts = cache(async () => {
-  return readCollection<BlogFrontmatter>("blog", blogFrontmatterSchema);
-});
-
 export const getPaperNotes = cache(async () => {
   return readCollection<PaperFrontmatter>("papers", paperFrontmatterSchema);
 });
@@ -138,18 +135,6 @@ export const getPaperNotes = cache(async () => {
 export const getProjects = cache(async () => {
   return readCollection<ProjectFrontmatter>("projects", projectFrontmatterSchema);
 });
-
-export async function getFeaturedBlogPosts(limit = 3) {
-  const posts = await getBlogPosts();
-
-  return posts.filter((post) => post.featured).slice(0, limit);
-}
-
-export async function getRecentBlogPosts(limit = 3) {
-  const posts = await getBlogPosts();
-
-  return posts.slice(0, limit);
-}
 
 export async function getFeaturedPaperNotes(limit = 3) {
   const papers = await getPaperNotes();
@@ -171,12 +156,6 @@ export async function getFeaturedProjects(limit = 3) {
   return projects.filter((project) => project.featured).slice(0, limit);
 }
 
-export async function getBlogPostBySlug(slugSegments: string[]) {
-  const posts = await getBlogPosts();
-
-  return posts.find((post) => post.slug === slugSegments.join("/")) ?? null;
-}
-
 export async function getPaperNoteBySlug(slug: string) {
   const papers = await getPaperNotes();
 
@@ -188,3 +167,10 @@ export async function getProjectBySlug(slug: string) {
 
   return projects.find((project) => project.slug === slug) ?? null;
 }
+
+export {
+  getBlogPostBySlug,
+  getBlogPosts,
+  getFeaturedBlogPosts,
+  getRecentBlogPosts,
+};

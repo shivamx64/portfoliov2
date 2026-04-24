@@ -1,11 +1,11 @@
 import { ButtonLink } from "@/components/ui/button";
 import { SectionShell } from "@/components/shared/section-shell";
-import type { BlogFrontmatter, ContentEntry } from "@/types/content";
+import type { BlogPost } from "@/types/blog";
 
 import { BlogList } from "@/components/blog/blog-list";
 
 type RecentBlogsSectionProps = {
-  posts: Array<ContentEntry<BlogFrontmatter>>;
+  posts: BlogPost[];
 };
 
 export function RecentBlogsSection({ posts }: RecentBlogsSectionProps) {

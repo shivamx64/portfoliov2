@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 
 import { STATIC_MARKETING_ROUTES } from "@/lib/constants";
-import { getBlogPosts, getPaperNotes, getProjects } from "@/lib/content";
+import { getBlogPosts } from "@/lib/blog";
+import { getPaperNotes, getProjects } from "@/lib/content";
 import { absoluteUrl } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -20,7 +21,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
-  const contentRoutes: MetadataRoute.Sitemap = [...posts, ...papers, ...projects].map(
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: absoluteUrl(post.url),
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  const contentRoutes: MetadataRoute.Sitemap = [...papers, ...projects].map(
     (entry) => ({
       url: absoluteUrl(entry.url),
       lastModified: new Date(entry.updatedAt ?? entry.publishedAt),
@@ -29,5 +37,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
-  return [...staticRoutes, ...contentRoutes];
+  return [...staticRoutes, ...blogRoutes, ...contentRoutes];
 }

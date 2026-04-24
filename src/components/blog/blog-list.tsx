@@ -1,18 +1,24 @@
 import { EmptyState } from "@/components/shared/empty-state";
-import type { BlogFrontmatter, ContentEntry } from "@/types/content";
+import type { BlogPost } from "@/types/blog";
 
-import { BlogCard } from "./blog-card";
+import { BlogListItem } from "./blog-list-item";
 
 type BlogListProps = {
-  posts: Array<ContentEntry<BlogFrontmatter>>;
+  posts: BlogPost[];
+  emptyTitle?: string;
+  emptyDescription?: string;
 };
 
-export function BlogList({ posts }: BlogListProps) {
+export function BlogList({
+  posts,
+  emptyTitle = "Writing space is ready",
+  emptyDescription = "Add MDX files to src/content/blog to publish essays, notes, and technical articles.",
+}: BlogListProps) {
   if (!posts.length) {
     return (
       <EmptyState
-        title="Writing space is ready"
-        description="Add MDX files to src/content/blog to publish essays, notes, and technical articles."
+        title={emptyTitle}
+        description={emptyDescription}
       />
     );
   }
@@ -20,7 +26,7 @@ export function BlogList({ posts }: BlogListProps) {
   return (
     <div>
       {posts.map((post) => (
-        <BlogCard key={post.slug} post={post} />
+        <BlogListItem key={post.slug} post={post} />
       ))}
     </div>
   );

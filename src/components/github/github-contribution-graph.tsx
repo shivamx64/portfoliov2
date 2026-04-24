@@ -79,7 +79,7 @@ export function GitHubContributionGraph({
             <span
               key={color.light}
               aria-hidden="true"
-              className="size-3 rounded-[2px] border border-black/5 bg-[var(--contribution-color)] dark:border-white/10 dark:bg-[var(--contribution-dark-color)]"
+              className="size-3 rounded-[2px] border border-black/5 `bg-[var(--contribution-color)] dark:border-white/10 dark:bg-[var(--contribution-dark-color)]"
               style={
                 {
                   "--contribution-color": color.light,
