@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "Shivam Jha",
   firstName: "Shivam",
-  role: "Backend and cloud engineer",
+  role: "Backend and Cloud engineer",
   title:
-    "Backend and cloud engineer building durable systems, thoughtful tooling, and paper-backed engineering notes.",
-  shortTitle: "Backend, cloud, and distributed systems engineer",
+    "Backend and Cloud engineer building durable systems, thoughtful tooling, and paper-backed engineering notes.",
+  shortTitle: "Backend, Cloud, and distributed systems",
   description:
     "Personal engineering portfolio and technical writing platform focused on distributed systems, Kubernetes, platform engineering, databases, and paper implementations.",
   email: "shivam@engineering-notes.dev",
@@ -34,7 +34,7 @@ export const siteConfig = {
     "technical writing",
   ],
   hero: {
-    eyebrow: "Portfolio, systems notes, and technical writing",
+    eyebrow: "Portfolio, Blog,  Engineering Notes",
     intro:
       "I build backend platforms and cloud systems with a bias toward reliability, clean interfaces, and implementation-first learning.",
     subcopy:
