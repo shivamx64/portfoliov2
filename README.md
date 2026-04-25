@@ -37,6 +37,33 @@ pnpm dev
 
 Open `http://localhost:3000`.
 
+## Visitor Counter
+
+Set these values in `.env.local`:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+Run this SQL in Supabase:
+
+```sql
+create table if not exists site_visitors (
+  id bigint generated always as identity primary key,
+  page_path text not null,
+  visitor_hash text not null,
+  user_agent text,
+  created_at timestamptz default now()
+);
+
+create index if not exists site_visitors_page_path_idx
+on site_visitors(page_path);
+
+create unique index if not exists site_visitors_unique_daily_idx
+on site_visitors(page_path, visitor_hash, date(created_at));
+```
+
 ## Content Editing
 
 - Update profile and site metadata in `src/config/site.ts`

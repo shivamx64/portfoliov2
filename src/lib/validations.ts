@@ -25,3 +25,14 @@ export const contactFormSchema = z.object({
 
 export type ContactFormInput = z.input<typeof contactFormSchema>;
 export type ContactFormValues = z.output<typeof contactFormSchema>;
+
+export const visitorPayloadSchema = z.object({
+  pagePath: z
+    .string()
+    .trim()
+    .min(1, "Page path is required.")
+    .max(2048, "Page path is too long.")
+    .regex(/^\/(?!\/)/, "Page path must be a relative pathname."),
+});
+
+export type VisitorPayload = z.output<typeof visitorPayloadSchema>;

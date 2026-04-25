@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MapPin, NotebookText, ServerCog } from "lucide-react";
 
+import { VisitorCounter } from "@/components/shared/visitor-counter";
 import { ButtonLink } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 
@@ -53,6 +54,7 @@ export function HeroSection() {
                   <NotebookText aria-hidden="true" className="size-3.5" />
                   Systems notes
                 </HeroBadge>
+                <VisitorCounter />
               </div>
 
               <div className="max-w-2xl space-y-4 text-[1.02rem] leading-8 text-foreground/82">
