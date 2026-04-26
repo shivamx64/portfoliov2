@@ -13,5 +13,3 @@ export const STATIC_MARKETING_ROUTES = [
   "/resume",
   "/contact",
 ] as const;
-
-export const GITHUB_REVALIDATE_SECONDS = 60 * 60 * 6;

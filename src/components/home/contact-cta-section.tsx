@@ -17,7 +17,7 @@ export function ContactCtaSection() {
             {siteConfig.contact.description}
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            <ButtonLink href="/contact">Start a conversation</ButtonLink>
+            <ButtonLink href="/contact">Send Message</ButtonLink>
             <ButtonLink href="/resume" variant="ghost">
               Resume
             </ButtonLink>

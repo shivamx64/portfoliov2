@@ -1,4 +1,5 @@
 import { SectionShell } from "@/components/shared/section-shell";
+import { CompanyName } from "@/components/shared/company-name";
 import { ExternalLink } from "@/components/shared/external-link";
 import type { ExperienceEntry } from "@/types/content";
 
@@ -10,7 +11,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
   return (
     <SectionShell
       title="Work experience"
-      description="A concise view of the kinds of backend, platform, and infrastructure work I’ve been responsible for."
+      description="Recent backend, DevOps, and Kubernetes work. Kept short on purpose."
     >
       <div className="space-y-8">
         {experience.map((entry) => (
@@ -29,7 +30,11 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                   <h3 className="font-heading text-[1.45rem] font-medium tracking-[-0.04em] text-foreground">
                     {entry.role}
                   </h3>
-                  <p className="text-sm text-muted-foreground">{entry.company}</p>
+                  <p className="text-sm text-muted-foreground">
+                    <CompanyName confidential={entry.confidential}>
+                      {entry.company}
+                    </CompanyName>
+                  </p>
                   <p className="text-sm leading-7 text-muted-foreground">
                     {entry.summary}
                   </p>

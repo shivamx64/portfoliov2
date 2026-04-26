@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Contact",
-  description: "Get in touch about backend, platform, and infrastructure engineering work.",
+  description: "Get in touch about backend, platform, or infrastructure work.",
   pathname: "/contact",
 });
 
@@ -14,8 +14,8 @@ export default function ContactPage() {
     <div className="space-y-8 pb-12">
       <PageHeader
         eyebrow="Contact"
-        title="Start a conversation"
-        description="Reach out about engineering roles, collaboration, technical writing, or systems work that needs care."
+        title="Send the useful context"
+        description="Backend roles, infra work, writing, or a system with an interesting failure story."
       />
       <section className="content-width grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         <ContactForm />
@@ -25,8 +25,7 @@ export default function ContactPage() {
               Direct channels
             </h2>
             <p className="text-sm leading-7 text-muted-foreground">
-              The form sends directly to email. If you prefer a direct path, these
-              links stay close at hand.
+              The form goes to email. These links are here if a direct path is easier.
             </p>
           </div>
           <ul className="space-y-3">

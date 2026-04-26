@@ -1,3 +1,5 @@
+import { connection } from "next/server";
+
 import { GitHubContributionGraph } from "@/components/github/github-contribution-graph";
 import { SectionShell } from "@/components/shared/section-shell";
 import {
@@ -27,6 +29,8 @@ async function loadContributions(): Promise<{
 }
 
 export async function GithubActivitySection() {
+  await connection();
+
   const { contributions, errorMessage } = await loadContributions();
 
   return (

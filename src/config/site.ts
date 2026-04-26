@@ -1,25 +1,25 @@
 export const siteConfig = {
   name: "Shivam Jha",
   firstName: "Shivam",
-  role: "Backend and Cloud engineer",
+  role: "Backend and infrastructure engineer",
   title:
-    "Backend and Cloud engineer building durable systems, thoughtful tooling, and paper-backed engineering notes.",
-  shortTitle: "Backend, Cloud, and distributed systems",
+    "Backend and infrastructure engineer building services, deployment paths, and notes from the parts that broke.",
+  shortTitle: "Backend, infrastructure, and distributed systems",
   description:
-    "Personal engineering portfolio and technical writing platform focused on distributed systems, Kubernetes, platform engineering, databases, and paper implementations.",
+    "Portfolio and engineering notes on backend systems, Kubernetes, DevOps, databases, and distributed systems.",
   email: "shivam@engineering-notes.dev",
   location: "Bengaluru, India",
   githubUsername:
-    process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "shivam-jha-engineering",
+    process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "ShivamJha2436",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivam-jha.dev",
   resumePath: "/resume/shivam-jha-resume.pdf",
-  status: "Open to backend, platform, and infrastructure engineering opportunities.",
+  status: "Open to backend, platform, and infrastructure roles.",
   availability: "Open to work · Immediately",
   heroBadges: [
     "Bengaluru, India",
-    "Backend systems",
-    "Cloud platforms",
-    "Technical writing",
+    "Backend & Infrastructure",
+    "Kubernetes",
+    "Systems notes",
   ],
   keywords: [
     "Shivam Jha",
@@ -34,57 +34,61 @@ export const siteConfig = {
     "technical writing",
   ],
   hero: {
-    eyebrow: "Portfolio, Blog,  Engineering Notes",
+    eyebrow: "Hi, I’m Shivam.",
     intro:
-      "I build backend platforms and cloud systems with a bias toward reliability, clean interfaces, and implementation-first learning.",
+      "I work on backend and infrastructure code: APIs, CI/CD, containers, Kubernetes, and the boring paths that keep deploys from turning into a mess.",
     subcopy:
-      "This site is my long-term home for projects, paper implementations, engineering notes, and the kind of writing that only gets better with time.",
+      "Right now I am digging into distributed systems and Kubernetes internals by building small things, breaking them, and writing down what actually happened.",
   },
   currentFocus: [
     {
-      title: "Distributed systems from first principles",
+      title: "Distributed systems, built small",
       description:
-        "Rebuilding ideas from foundational papers to understand tradeoffs instead of memorizing conclusions.",
+        "Implementing the pieces instead of only reading the diagrams.",
       detail:
-        "Current threads: replication, coordination, fault tolerance, and stateful workflows.",
+        "Current threads: replication, leases, retries, leader election, and what failure looks like in code.",
     },
     {
-      title: "Kubernetes and platform tooling",
+      title: "Kubernetes control loops",
       description:
-        "Designing internal tools that make infrastructure safer, faster, and easier for product teams to use.",
+        "Learning the machinery behind controllers, admission, ownership, and reconciliation.",
       detail:
-        "Current threads: control loops, release automation, cluster guardrails, and observability defaults.",
+        "Current threads: owner references, finalizers, policy engines, rollout safety, and cluster guardrails.",
     },
     {
-      title: "Databases and systems performance",
+      title: "Databases and background work",
       description:
-        "Studying data-intensive systems to build stronger intuition around storage engines, queues, and consistency.",
+        "Following the path from a write to storage, indexes, queues, retries, and cleanup.",
       detail:
-        "Current threads: LSM trees, durable queues, latency budgets, and write-heavy workloads.",
+        "Current threads: Postgres-backed queues, idempotency, dead letters, LSM trees, and latency spikes.",
     },
   ],
   about: {
     summary:
-      "I care about the layer where backend architecture, platform ergonomics, and everyday developer experience all meet.",
+      "I like backend work that has consequences: deploys, data, queues, clusters, and failure modes you can explain.",
     paragraphs: [
-      "My work lives close to the operational edge of software: services, deployment systems, cluster tooling, internal platforms, and the documentation that helps teams move with confidence.",
-      "I like products that are both technically serious and easy to live with. That means clear interfaces, pragmatic abstractions, and a steady habit of writing through decisions instead of hiding them.",
+      "Right now I am working around backend services, CI/CD pipelines, Docker-based environments, and Kubernetes policy work. I care less about shiny architecture and more about whether the system is understandable when it is 2 AM and something is stuck.",
+      "The technical areas I keep coming back to are control loops, queues, idempotency, rollout safety, observability, and databases under write load. Small details matter there. A missing constraint or a vague retry rule can become a real incident later.",
     ],
     principles: [
-      "A platform earns trust when it makes the safe path the easy path.",
-      "Good systems writing is part of the engineering work, not documentation debt.",
-      "Paper implementations are one of the fastest ways to sharpen engineering judgment.",
+      "Make the safe path boring enough that people actually use it.",
+      "Write down the tradeoff while it is still fresh.",
+      "If I cannot reproduce the failure locally, I probably do not understand it yet.",
     ],
   },
   skills: {
     groups: [
       {
         label: "Languages",
-        items: ["TypeScript", "Go", "Python", "SQL", "Bash"],
+        items: ["TypeScript", "Go", "Python", "C++", "SQL", "Bash"],
       },
       {
-        label: "Frontend and APIs",
-        items: ["React", "Next.js", "GraphQL", "REST", "MDX"],
+        label: "Frontend",
+        items: ["React", "Next.js", "GraphQL", "REST"],
+      },
+      {
+        label: "Backend",
+        items: ["Gin", "Fiber", "PostgreSQL", "Redis", "Kafka", "RabbitMQ", "gRPC"],
       },
       {
         label: "Cloud and infrastructure",
@@ -104,8 +108,8 @@ export const siteConfig = {
     ],
   },
   contact: {
-    title: "Let’s talk about systems work that needs care.",
+    title: "Let’s have a quick chat.",
     description:
-      "If you’re building infrastructure, internal platforms, or backend-heavy products, I’d be glad to connect.",
+      "If the work involves services, deploys, clusters, queues, or debugging weird production behavior, I am interested.",
   },
 } as const;

@@ -1,8 +1,5 @@
 import "server-only";
 
-import { cache } from "react";
-
-import { GITHUB_REVALIDATE_SECONDS } from "@/lib/constants";
 import type {
   GitHubContributionDay,
   GitHubContributionsResponse,
@@ -117,80 +114,78 @@ function normalizeContributions(
   };
 }
 
-export const getGitHubContributions = cache(
-  async (): Promise<GitHubContributionsResponse> => {
-    const { username, token } = getGitHubConfig();
+export async function getGitHubContributions(): Promise<GitHubContributionsResponse> {
+  const { username, token } = getGitHubConfig();
 
-    let response: Response;
+  let response: Response;
 
-    try {
-      response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
-        method: "POST",
-        headers: {
-          Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          "User-Agent": "shivam-jha-portfolio",
-        },
-        body: JSON.stringify({
-          query: GITHUB_CONTRIBUTIONS_QUERY,
-          variables: { username },
-        }),
-        next: { revalidate: GITHUB_REVALIDATE_SECONDS },
-      });
-    } catch {
-      throw new GitHubContributionsError(
-        "Unable to reach the GitHub GraphQL API.",
-        502,
-      );
-    }
+  try {
+    response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
+      method: "POST",
+      cache: "no-store",
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "User-Agent": "shivam-jha-portfolio",
+      },
+      body: JSON.stringify({
+        query: GITHUB_CONTRIBUTIONS_QUERY,
+        variables: { username },
+      }),
+    });
+  } catch {
+    throw new GitHubContributionsError(
+      "Unable to reach the GitHub GraphQL API.",
+      502,
+    );
+  }
 
-    if (!response.ok) {
-      const errorDetails = await readGitHubError(response);
+  if (!response.ok) {
+    const errorDetails = await readGitHubError(response);
 
-      throw new GitHubContributionsError(
-        `GitHub GraphQL API request failed with status ${response.status}${errorDetails}`,
-        502,
-      );
-    }
+    throw new GitHubContributionsError(
+      `GitHub GraphQL API request failed with status ${response.status}${errorDetails}`,
+      502,
+    );
+  }
 
-    let payload: GitHubGraphQLContributionsPayload;
+  let payload: GitHubGraphQLContributionsPayload;
 
-    try {
-      payload = (await response.json()) as GitHubGraphQLContributionsPayload;
-    } catch {
-      throw new GitHubContributionsError(
-        "GitHub returned an invalid JSON response.",
-        502,
-      );
-    }
+  try {
+    payload = (await response.json()) as GitHubGraphQLContributionsPayload;
+  } catch {
+    throw new GitHubContributionsError(
+      "GitHub returned an invalid JSON response.",
+      502,
+    );
+  }
 
-    if (payload.errors?.length) {
-      const messages = payload.errors.map((error) => error.message).join("; ");
+  if (payload.errors?.length) {
+    const messages = payload.errors.map((error) => error.message).join("; ");
 
-      throw new GitHubContributionsError(
-        `GitHub GraphQL error: ${messages}`,
-        502,
-      );
-    }
+    throw new GitHubContributionsError(
+      `GitHub GraphQL error: ${messages}`,
+      502,
+    );
+  }
 
-    if (!payload.data?.user) {
-      throw new GitHubContributionsError(
-        `GitHub user "${username}" was not found.`,
-        404,
-      );
-    }
+  if (!payload.data?.user) {
+    throw new GitHubContributionsError(
+      `GitHub user "${username}" was not found.`,
+      404,
+    );
+  }
 
-    const calendar =
-      payload.data.user.contributionsCollection?.contributionCalendar;
+  const calendar =
+    payload.data.user.contributionsCollection?.contributionCalendar;
 
-    if (!calendar) {
-      throw new GitHubContributionsError(
-        "GitHub did not return contribution calendar data.",
-        502,
-      );
-    }
+  if (!calendar) {
+    throw new GitHubContributionsError(
+      "GitHub did not return contribution calendar data.",
+      502,
+    );
+  }
 
-    return normalizeContributions(calendar);
-  },
-);
+  return normalizeContributions(calendar);
+}

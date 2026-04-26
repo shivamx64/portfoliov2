@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
 
-import { GITHUB_REVALIDATE_SECONDS } from "@/lib/constants";
 import {
   getGitHubContributions,
   GitHubContributionsError,
 } from "@/lib/github";
 
-export const revalidate = 21600;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
@@ -14,7 +13,7 @@ export async function GET() {
 
     return NextResponse.json(contributions, {
       headers: {
-        "Cache-Control": `s-maxage=${GITHUB_REVALIDATE_SECONDS}, stale-while-revalidate=86400`,
+        "Cache-Control": "no-store, max-age=0",
       },
     });
   } catch (error) {

@@ -9,4 +9,6 @@ export type SocialLink = {
   label: string;
   value: string;
   external?: boolean;
+  icon?: "github" | "linkedin" | "x" | "leetcode" | "email" | "resume";
+  showInHero?: boolean;
 };

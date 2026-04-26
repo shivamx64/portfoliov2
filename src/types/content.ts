@@ -18,6 +18,7 @@ export type ExperienceEntry = {
   highlights: string[];
   stack: string[];
   url?: string;
+  confidential?: boolean;
 };
 
 export type BaseContentFrontmatter = {

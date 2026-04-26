@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/ui/button";
+import { CompanyName } from "@/components/shared/company-name";
 import { PageHeader } from "@/components/shared/page-header";
 import { siteConfig } from "@/config/site";
 import { experienceEntries } from "@/content/experience/experience";
@@ -6,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Resume",
-  description: "Resume, experience highlights, and downloadable PDF.",
+  description: "Recent backend, DevOps, and Kubernetes work.",
   pathname: "/resume",
 });
 
@@ -15,8 +16,8 @@ export default function ResumePage() {
     <div className="space-y-8 pb-12">
       <PageHeader
         eyebrow="Resume"
-        title="A concise view of recent backend and platform work"
-        description="Experience highlights, current focus areas, and a downloadable PDF resume."
+        title="Recent backend, DevOps, and Kubernetes work"
+        description="Short version here. PDF if you need the formal one."
         actions={
           <ButtonLink href={siteConfig.resumePath} variant="outline">
             Download resume
@@ -36,7 +37,10 @@ export default function ResumePage() {
                   {entry.role}
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  {entry.company} · {entry.location}
+                  <CompanyName confidential={entry.confidential}>
+                    {entry.company}
+                  </CompanyName>{" "}
+                  · {entry.location}
                 </p>
               </div>
               <p className="eyebrow">{entry.period}</p>

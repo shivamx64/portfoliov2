@@ -6,7 +6,7 @@ export function CurrentFocusSection() {
   return (
     <SectionShell
       title="About"
-      description="A short introduction to how I like to work, what I care about, and the areas I keep returning to."
+      description="Current work, technical rabbit holes, and the stuff I keep coming back to."
     >
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
         <div className="space-y-5 text-[1rem] leading-8 text-foreground/84">

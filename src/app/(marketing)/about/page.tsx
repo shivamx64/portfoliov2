@@ -1,11 +1,12 @@
 import { PageHeader } from "@/components/shared/page-header";
+import { CompanyName } from "@/components/shared/company-name";
 import { siteConfig } from "@/config/site";
 import { experienceEntries } from "@/content/experience/experience";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "About",
-  description: "Background, principles, and engineering focus areas.",
+  description: "Current work, technical focus, and engineering notes.",
   pathname: "/about",
 });
 
@@ -14,7 +15,7 @@ export default function AboutPage() {
     <div className="space-y-12 pb-12">
       <PageHeader
         eyebrow="About"
-        title="A backend and cloud engineer who likes systems that stay understandable."
+        title="Backend and infra work, written plainly."
         description={siteConfig.about.summary}
       />
 
@@ -59,7 +60,7 @@ export default function AboutPage() {
         <div className="max-w-2xl space-y-3">
           <p className="eyebrow">Experience snapshot</p>
           <h2 className="font-heading text-3xl font-medium tracking-[-0.05em] text-foreground">
-            Roles that shaped how I build
+            Work that changed how I build
           </h2>
         </div>
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
@@ -73,7 +74,10 @@ export default function AboutPage() {
                   {entry.role}
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  {entry.company} · {entry.period}
+                  <CompanyName confidential={entry.confidential}>
+                    {entry.company}
+                  </CompanyName>{" "}
+                  · {entry.period}
                 </p>
                 <p className="text-sm leading-7 text-muted-foreground">
                   {entry.summary}

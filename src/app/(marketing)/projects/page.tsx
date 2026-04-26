@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Projects",
-  description: "Selected engineering projects across platform tooling, systems experiments, and technical writing infrastructure.",
+  description: "Backend, Kubernetes, queueing, and writing systems projects.",
   pathname: "/projects",
 });
 
@@ -16,8 +16,8 @@ export default async function ProjectsPage() {
     <div className="space-y-8 pb-12">
       <PageHeader
         eyebrow="Projects"
-        title="Engineering work with room for depth"
-        description="A growing collection of platform tooling, systems experiments, and personal infrastructure projects."
+        title="Projects where the edge cases matter"
+        description="Queues, Kubernetes workflows, and note-taking tools built to understand the messy parts."
       />
       <div className="content-width">
         <ProjectList projects={projects} />
