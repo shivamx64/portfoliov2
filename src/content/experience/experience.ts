@@ -7,11 +7,11 @@ export const experienceEntries: ExperienceEntry[] = [
     location: "Remote",
     period: "Sept 2024 - Nov 2024",
     summary:
-      "Contributed to Kyverno, a Kubernetes-native policy engine, by changing how deletion propagation policies reason about dependent resources.",
+      "Built changes in Kyverno around deletion propagation, resource lifecycle, and how policy cleanup behaves inside Kubernetes.",
     highlights: [
-      "Implemented changes around cascading deletion behavior so policy cleanup followed Kubernetes ownership and deletion semantics more predictably.",
-      "Read through controller paths, owner references, admission behavior, and policy reconciliation code before touching the implementation.",
-      "Shipped the work through maintainer review with design discussion, tests, and production-style pull requests instead of drive-by patches.",
+      "Changed deletion propagation behavior so dependent resources followed Kubernetes ownership and cleanup rules more predictably.",
+      "Touched controller logic, owner references, admission paths, and reconciliation code instead of only changing surface-level config.",
+      "Wrote PRs with tests and design discussion, then iterated through maintainer review until the behavior made sense.",
     ],
     stack: ["Go", "Kubernetes", "Kyverno", "Controllers", "CNCF"],
     url: "https://kyverno.io",
@@ -22,12 +22,12 @@ export const experienceEntries: ExperienceEntry[] = [
     location: "Remote",
     period: "Feb 2025 - Jun 2025",
     summary:
-      "Owned the rough edges around builds, deploys, and backend runtime environments so releases failed earlier and were easier to repeat.",
+      "Handled build pipelines, AWS setup, and containerized backend environments in a startup pace where things had to move.",
     highlights: [
-      "Built Jenkins pipelines with SonarQube quality gates so broken builds and obvious code issues stopped before deployment.",
-      "Set up AWS pieces across EC2, S3, and IAM, keeping permissions and service setup explicit instead of hidden in manual steps.",
-      "Containerized backend services with Docker and Docker Compose so local runs matched deployment assumptions more closely.",
-      "Fixed frontend environment wiring and small UI issues when they blocked delivery, without pretending it was a grand platform project.",
+      "Built Jenkins pipelines with SonarQube gates so bad builds failed before they reached deploy time.",
+      "Set up AWS pieces across EC2, S3, and IAM, with permissions and runtime setup kept explicit.",
+      "Containerized backend services with Docker and Docker Compose so local dev matched the actual runtime better.",
+      "Fixed frontend env wiring and small UI blockers when they slowed shipping. Not my main lane, but the product needed it.",
     ],
     stack: ["Jenkins", "SonarQube", "AWS", "Docker", "Docker Compose"],
     confidential: true,

@@ -15,7 +15,7 @@ export function FeaturedProjectsSection({
     <SectionShell
       id="projects"
       title="Featured projects"
-      description="Small systems projects where the interesting part is the failure mode, not the screenshot."
+      description="Systems projects built to understand runtime behavior, failure modes, and deployment edges."
     >
       <ProjectList projects={projects} />
       <div className="mt-6">

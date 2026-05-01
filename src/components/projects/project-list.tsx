@@ -11,14 +11,14 @@ export function ProjectList({ projects }: ProjectListProps) {
   if (!projects.length) {
     return (
       <EmptyState
-        title="Projects are on the way"
-        description="Add MDX files to src/content/projects to publish engineering work here."
+        title="No projects published yet"
+        description="The next build note will show up here."
       />
     );
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="grid gap-5">
       {projects.map((project) => (
         <ProjectCard key={project.slug} project={project} />
       ))}

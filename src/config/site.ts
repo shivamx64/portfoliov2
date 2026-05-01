@@ -3,10 +3,10 @@ export const siteConfig = {
   firstName: "Shivam",
   role: "Backend and infrastructure engineer",
   title:
-    "Backend and infrastructure engineer building services, deployment paths, and notes from the parts that broke.",
-  shortTitle: "Backend, infrastructure, and distributed systems",
+    "Backend and DevOps engineer who ships fast, deploys real systems, and learns from the parts that break.",
+  shortTitle: "Backend, DevOps, and distributed systems",
   description:
-    "Portfolio and engineering notes on backend systems, Kubernetes, DevOps, databases, and distributed systems.",
+    "Portfolio and engineering notes on backend systems, DevOps, Kubernetes, databases, and distributed systems.",
   email: "shivam@engineering-notes.dev",
   location: "Bengaluru, India",
   githubUsername:
@@ -17,7 +17,7 @@ export const siteConfig = {
   availability: "Open to work · Immediately",
   heroBadges: [
     "Bengaluru, India",
-    "Backend & Infrastructure",
+    "Backend + DevOps",
     "Kubernetes",
     "Systems notes",
   ],
@@ -36,44 +36,46 @@ export const siteConfig = {
   hero: {
     eyebrow: "Hi, I’m Shivam.",
     intro:
-      "I work on backend and infrastructure code: APIs, CI/CD, containers, Kubernetes, and the boring paths that keep deploys from turning into a mess.",
+      "Backend + DevOps. I ship fast, deploy things, break them, fix the sharp edges, and move again.",
     subcopy:
-      "Right now I am digging into distributed systems and Kubernetes internals by building small things, breaking them, and writing down what actually happened.",
+      "Mostly into APIs, CI/CD, containers, Kubernetes, distributed systems, and figuring out how the system actually behaves under pressure.",
   },
   currentFocus: [
     {
-      title: "Distributed systems, built small",
+      title: "Distributed systems by building",
       description:
-        "Implementing the pieces instead of only reading the diagrams.",
+        "Reading papers, then implementing the part that looks too clean in the diagram.",
       detail:
-        "Current threads: replication, leases, retries, leader election, and what failure looks like in code.",
+        "Current threads: replication, leases, retries, leader election, consistency, and failure paths.",
     },
     {
-      title: "Kubernetes control loops",
+      title: "Kubernetes internals",
       description:
-        "Learning the machinery behind controllers, admission, ownership, and reconciliation.",
+        "Digging into the control-plane bits that decide what lives, what gets cleaned up, and what keeps reconciling.",
       detail:
-        "Current threads: owner references, finalizers, policy engines, rollout safety, and cluster guardrails.",
+        "Current threads: controllers, owner references, finalizers, admission, policy engines, and rollout safety.",
     },
     {
-      title: "Databases and background work",
+      title: "Backend runtime behavior",
       description:
-        "Following the path from a write to storage, indexes, queues, retries, and cleanup.",
+        "Following requests past the happy path: queues, retries, DB writes, timeouts, and cleanup.",
       detail:
-        "Current threads: Postgres-backed queues, idempotency, dead letters, LSM trees, and latency spikes.",
+        "Current threads: Postgres-backed queues, idempotency, dead letters, Redis, LSM trees, and latency spikes.",
     },
   ],
   about: {
     summary:
-      "I like backend work that has consequences: deploys, data, queues, clusters, and failure modes you can explain.",
+      "I like startup-style engineering: own the problem, ship the fix, watch the system, then tighten it.",
     paragraphs: [
-      "Right now I am working around backend services, CI/CD pipelines, Docker-based environments, and Kubernetes policy work. I care less about shiny architecture and more about whether the system is understandable when it is 2 AM and something is stuck.",
-      "The technical areas I keep coming back to are control loops, queues, idempotency, rollout safety, observability, and databases under write load. Small details matter there. A missing constraint or a vague retry rule can become a real incident later.",
+      "Right now: backend engineering, DevOps, CI/CD, Docker environments, AWS setup, and Kubernetes policy work. I like small teams, fast loops, and systems where ownership is not split across five meetings.",
+      "I care about APIs that are easy to run, deploys that fail early, logs that say something useful, and infra that a tired engineer can still reason about.",
+      "I am actively reading and building around distributed systems, Kubernetes internals, databases, queues, retries, and failure handling. Theory is useful. Running code is where it gets honest.",
     ],
     principles: [
-      "Make the safe path boring enough that people actually use it.",
-      "Write down the tradeoff while it is still fresh.",
-      "If I cannot reproduce the failure locally, I probably do not understand it yet.",
+      "Ship small. Verify fast. Keep the rollback path real.",
+      "If a deploy can fail, make the failure obvious before prod.",
+      "If I cannot reproduce the bug, I do not understand it yet.",
+      "Read the paper, build the toy version, then find where the abstraction leaks.",
     ],
   },
   skills: {
@@ -108,8 +110,8 @@ export const siteConfig = {
     ],
   },
   contact: {
-    title: "Let’s have a quick chat.",
+    title: "Send the problem.",
     description:
-      "If the work involves services, deploys, clusters, queues, or debugging weird production behavior, I am interested.",
+      "Backend, DevOps, infra, queues, clusters, or weird production behavior. Send context. I will read it.",
   },
 } as const;

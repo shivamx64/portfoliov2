@@ -11,8 +11,8 @@ export function PaperList({ papers }: PaperListProps) {
   if (!papers.length) {
     return (
       <EmptyState
-        title="Paper notes are coming soon"
-        description="Add MDX files to src/content/papers to publish paper implementations and reading notes."
+        title="No paper notes yet"
+        description="The next paper read or toy implementation will land here."
       />
     );
   }

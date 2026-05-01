@@ -2,9 +2,9 @@ import { siteConfig } from "@/config/site";
 import type { BlogCategory } from "@/types/blog";
 
 export const blogConfig = {
-  title: "Technical Writing",
+  title: "Engineering Notes",
   description:
-    "Field notes on backend engineering, distributed systems, databases, Kubernetes, and the operating details behind durable software.",
+    "Notes from backend work, DevOps, Kubernetes, databases, and distributed systems. Mostly the parts that break or teach something.",
   basePath: "/blog",
   siteUrl: siteConfig.url,
   categories: [
@@ -12,61 +12,61 @@ export const blogConfig = {
       label: "Backend Engineering",
       slug: "backend-engineering",
       description:
-        "Service boundaries, workflows, reliability patterns, APIs, and production backend design.",
+        "APIs, services, background jobs, reliability edges, and production backend behavior.",
     },
     {
       label: "Distributed Systems",
       slug: "distributed-systems",
       description:
-        "Coordination, replication, consensus, failure modes, and systems behavior under pressure.",
+        "Coordination, replication, consensus, failure modes, and what systems do under pressure.",
     },
     {
       label: "Databases",
       slug: "databases",
       description:
-        "Storage engines, query behavior, indexes, compaction, durability, and data modeling tradeoffs.",
+        "Storage engines, indexes, compaction, durability, query behavior, and write-heavy systems.",
     },
     {
       label: "Data Structures and Algorithms",
       slug: "dsa",
       description:
-        "Implementation notes and problem-solving patterns for data structures and algorithms.",
+        "Implementation notes for data structures, algorithms, and problem-solving patterns.",
     },
     {
       label: "DevOps",
       slug: "devops",
       description:
-        "Release automation, observability, incident practice, and operational engineering habits.",
+        "CI/CD, Docker, AWS, observability, release safety, and the habits that keep deploys sane.",
     },
     {
       label: "Cloud Computing",
       slug: "cloud-computing",
       description:
-        "Cloud architecture, managed services, infrastructure choices, and platform cost discipline.",
+        "AWS pieces, managed services, infra choices, permissions, and cost-aware setup.",
     },
     {
       label: "Kubernetes",
       slug: "kubernetes",
       description:
-        "Controllers, cluster operations, platform APIs, and Kubernetes-native delivery systems.",
+        "Controllers, reconciliation, cluster operations, policy engines, and rollout behavior.",
     },
     {
       label: "System Design",
       slug: "system-design",
       description:
-        "Architecture notes for scalable services, queues, caches, workflows, and reliability boundaries.",
+        "Services, queues, caches, workflows, failure boundaries, and system shape under load.",
     },
     {
       label: "Linux Internals",
       slug: "linux-internals",
       description:
-        "Kernel-facing concepts, filesystems, networking, processes, and performance intuition.",
+        "Processes, filesystems, networking, performance basics, and Linux behavior I want to understand better.",
     },
     {
       label: "Research Papers",
       slug: "research-papers",
       description:
-        "Reading notes, paper implementations, and practical takeaways from foundational systems work.",
+        "Paper notes, toy implementations, and the gap between the clean idea and messy code.",
     },
   ] satisfies BlogCategory[],
 } as const;

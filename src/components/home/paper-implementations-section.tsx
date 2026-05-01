@@ -15,7 +15,7 @@ export function PaperImplementationsSection({
     <SectionShell
       id="papers"
       title="Paper implementations"
-      description="Rebuilding classic systems ideas to develop stronger intuition around distributed systems, consensus, and storage."
+      description="Reading systems papers, then building small versions to find the parts the paper skips."
     >
       <PaperList papers={papers} />
       <div className="mt-6">

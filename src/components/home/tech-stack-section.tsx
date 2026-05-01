@@ -5,7 +5,7 @@ export function TechStackSection() {
   return (
     <SectionShell
       title="Tech stack"
-      description="Tools and systems I reach for across backend services, cloud infrastructure, platform work, and production operations."
+      description="Tools I use to build, ship, debug, and keep backend systems moving."
     >
       <div className="grid gap-8 md:grid-cols-2">
         {siteConfig.skills.groups.map((group) => (

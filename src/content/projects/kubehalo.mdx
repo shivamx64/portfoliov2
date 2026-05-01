@@ -1,6 +1,6 @@
 ---
 title: KubeHalo
-excerpt: A Kubernetes toolkit for turning repeat cluster chores into explicit workflows with checks, guardrails, and rollback paths.
+excerpt: "A Kubernetes toolkit for making cluster operations explicit: checks, guardrails, rollout steps, and rollback assumptions."
 publishedAt: "2026-03-12"
 tags:
   - kubernetes
@@ -21,22 +21,23 @@ links:
   - label: Read the contact page
     href: /contact
 metrics:
-  - Turns repeated bootstrap and rollout steps into a workflow you can inspect.
-  - Keeps checks close to the operation instead of burying them in docs or shell history.
+  - Turns repeated bootstrap and rollout steps into workflows you can inspect.
+  - Keeps safety checks next to the operation instead of burying them in docs or shell history.
 ---
 
 ## Why I built it
 
-KubeHalo started from a familiar problem: cluster operations drift into scripts, notes, Slack messages, and muscle memory. That works until somebody has to repeat the same change under pressure.
+KubeHalo started from a familiar problem: cluster operations drift into scripts, notes, Slack messages, and muscle memory. That works until someone has to repeat the same change under pressure.
 
-I built it to encode common Kubernetes workflows with explicit checks and rollback assumptions. The point is not to hide Kubernetes. The point is to make the dangerous parts visible.
+I built it to encode common Kubernetes workflows with explicit checks and rollback assumptions. The point is not to hide Kubernetes. The point is to make the dangerous parts visible before they bite.
 
 ## Core ideas
 
 - Keep the control flow readable.
 - Put safety checks next to the action they protect.
-- Use Kubernetes primitives instead of inventing a shadow platform too early.
+- Use Kubernetes primitives first.
+- Avoid building a fake platform before the workflow is understood.
 
 ## What this implementation explores
 
-The interesting part is the line between useful automation and a platform nobody can debug. This project explores reconciliation, rollout checks, release orchestration, and how much opinion belongs in a small internal tool.
+The interesting part is the line between useful automation and a platform nobody can debug. This project explores reconciliation, rollout checks, release flow, and how much opinion belongs in a small internal tool.

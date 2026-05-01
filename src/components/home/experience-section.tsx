@@ -11,7 +11,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
   return (
     <SectionShell
       title="Work experience"
-      description="Recent backend, DevOps, and Kubernetes work. Kept short on purpose."
+      description="Backend, DevOps, Kubernetes, and startup-paced shipping."
     >
       <div className="space-y-8">
         {experience.map((entry) => (

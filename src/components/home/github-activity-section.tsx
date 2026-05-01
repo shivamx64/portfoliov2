@@ -36,7 +36,7 @@ export async function GithubActivitySection() {
   return (
     <SectionShell
       title="GitHub contributions"
-      description="A quiet calendar of shipped work, experiments, maintenance, and paper implementation notes."
+      description="Commits, experiments, fixes, and the small reps behind the bigger work."
     >
       {contributions ? (
         <GitHubContributionGraph contributions={contributions} />

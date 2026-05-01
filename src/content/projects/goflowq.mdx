@@ -1,6 +1,6 @@
 ---
 title: GoFlowQ
-excerpt: A Go queue runtime for jobs that need leases, retries, dead letters, and enough state to debug what happened.
+excerpt: A Go worker queue for testing leases, retries, dead letters, and what happens when jobs do not finish cleanly.
 publishedAt: "2026-02-02"
 tags:
   - go
@@ -21,22 +21,23 @@ links:
   - label: Blog
     href: /blog/backend/first-post
 metrics:
-  - Stores job state clearly enough to inspect stuck, retried, and dead-lettered work.
-  - Tests leases, retry backoff, idempotency, and worker shutdown behavior without hiding behind a managed broker.
+  - Tracks job state so stuck, retried, and dead-lettered work can be inspected.
+  - Tests leases, retry backoff, idempotency, and worker shutdown without hiding behind a managed broker.
 ---
 
 ## Problem framing
 
-Background jobs look simple until a worker dies halfway through a task, a retry runs twice, or a queue fills with work nobody owns anymore. GoFlowQ is my small queue runtime for those cases.
+Background jobs look simple until a worker dies halfway through a task, a retry runs twice, or the queue fills with work nobody owns anymore. GoFlowQ is my small queue runtime for those cases.
 
-It is not trying to be a bigger RabbitMQ. It is a place to implement the boring mechanics directly: leases, retries, dead letters, stuck job detection, and clean worker shutdown.
+It is not trying to replace RabbitMQ. It is a place to implement the mechanics directly: leases, retries, dead letters, stuck job detection, and clean worker shutdown.
 
 ## Design constraints
 
 - Keep scheduling readable.
 - Store enough metadata to explain why a job is running, delayed, retried, or dead.
-- Treat retries as load, not as a magic fix.
+- Treat retries as load, not magic.
+- Make shutdown boring. Workers should leave the system in a state you can explain.
 
 ## Current direction
 
-I am using it to compare Postgres-backed queues with broker-backed systems. The interesting parts are fairness, visibility, idempotency, and what "at least once" delivery really costs in application code.
+I am using it to compare Postgres-backed queues with broker-backed systems. The interesting parts are fairness, visibility, idempotency, and what "at least once" delivery costs once application code gets involved.
