@@ -14,13 +14,13 @@ export function PaperImplementationsSection({
   return (
     <SectionShell
       id="papers"
-      title="Paper implementations"
-      description="Reading systems papers, then building small versions to find the parts the paper skips."
+      title="Engineering notes"
+      description="Notes and small implementations that sharpen backend, infrastructure, and cloud-native judgment."
     >
       <PaperList papers={papers} />
       <div className="mt-6">
         <ButtonLink href="/papers" variant="outline">
-          View all paper notes
+          View all notes
         </ButtonLink>
       </div>
     </SectionShell>

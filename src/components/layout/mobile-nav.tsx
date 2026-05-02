@@ -35,7 +35,7 @@ export function MobileNav() {
         <SheetHeader>
           <SheetTitle>Explore</SheetTitle>
           <SheetDescription>
-            Projects, paper notes, writing, and ways to get in touch.
+            Projects, notes, writing, and ways to get in touch.
           </SheetDescription>
         </SheetHeader>
         <nav className="flex flex-col gap-2">

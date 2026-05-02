@@ -4,7 +4,7 @@ import type { BlogCategory } from "@/types/blog";
 export const blogConfig = {
   title: "Engineering Notes",
   description:
-    "Notes from backend work, DevOps, Kubernetes, databases, and distributed systems. Mostly the parts that break or teach something.",
+    "Notes from backend work, DevOps, cloud infrastructure, Kubernetes, and CNCF open source work.",
   basePath: "/blog",
   siteUrl: siteConfig.url,
   categories: [
@@ -42,13 +42,13 @@ export const blogConfig = {
       label: "Cloud Computing",
       slug: "cloud-computing",
       description:
-        "AWS pieces, managed services, infra choices, permissions, and cost-aware setup.",
+        "AWS pieces, managed services, infrastructure choices, permissions, and cost-aware setup.",
     },
     {
       label: "Kubernetes",
       slug: "kubernetes",
       description:
-        "Controllers, reconciliation, cluster operations, policy engines, and rollout behavior.",
+        "Controllers, reconciliation, cluster operations, policy engines, CNCF tools, and rollout behavior.",
     },
     {
       label: "System Design",
@@ -66,7 +66,7 @@ export const blogConfig = {
       label: "Research Papers",
       slug: "research-papers",
       description:
-        "Paper notes, toy implementations, and the gap between the clean idea and messy code.",
+        "Engineering papers, implementation notes, and the gap between clean ideas and running systems.",
     },
   ] satisfies BlogCategory[],
 } as const;

@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Resume",
-  description: "Recent backend, DevOps, and Kubernetes work.",
+  description: "Recent backend, DevOps, cloud, and Kubernetes work.",
   pathname: "/resume",
 });
 
@@ -16,7 +16,7 @@ export default function ResumePage() {
     <div className="space-y-8 pb-12">
       <PageHeader
         eyebrow="Resume"
-        title="Recent backend, DevOps, and Kubernetes work"
+        title="Recent backend, DevOps, cloud, and Kubernetes work"
         description="Short version here. PDF if you need the formal one."
         actions={
           <ButtonLink href={siteConfig.resumePath} variant="outline">

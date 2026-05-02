@@ -24,7 +24,7 @@ export async function generateMetadata({
 
   if (!paper) {
     return buildPageMetadata({
-      title: "Papers",
+      title: "Notes",
       pathname: "/papers",
     });
   }

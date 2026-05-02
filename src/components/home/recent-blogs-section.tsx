@@ -13,7 +13,7 @@ export function RecentBlogsSection({ posts }: RecentBlogsSectionProps) {
     <SectionShell
       id="blog"
       title="Recent writing"
-      description="Short notes from building, debugging, reading papers, and cleaning up wrong assumptions."
+      description="Short notes from backend work, DevOps, cloud setup, Kubernetes, and OSS contribution work."
     >
       <BlogList posts={posts} />
       <div className="mt-6">

@@ -11,8 +11,8 @@ export function PaperList({ papers }: PaperListProps) {
   if (!papers.length) {
     return (
       <EmptyState
-        title="No paper notes yet"
-        description="The next paper read or toy implementation will land here."
+        title="No notes published yet"
+        description="The next implementation note or engineering read will land here."
       />
     );
   }

@@ -1,81 +1,86 @@
 export const siteConfig = {
   name: "Shivam Jha",
   firstName: "Shivam",
-  role: "Backend and infrastructure engineer",
+  role: "Backend, DevOps, and cloud engineer",
   title:
-    "Backend and DevOps engineer who ships fast, deploys real systems, and learns from the parts that break.",
-  shortTitle: "Backend, DevOps, and distributed systems",
+    "Backend, DevOps, and cloud engineer working across APIs, infrastructure, Kubernetes, and CNCF ecosystem tools.",
+  shortTitle: "Backend, DevOps, cloud, and CNCF ecosystem",
   description:
-    "Portfolio and engineering notes on backend systems, DevOps, Kubernetes, databases, and distributed systems.",
+    "Portfolio and engineering notes on backend systems, DevOps, cloud infrastructure, Kubernetes, and open source work in the CNCF ecosystem.",
   email: "shivam@engineering-notes.dev",
   location: "Bengaluru, India",
   githubUsername:
     process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "ShivamJha2436",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivam-jha.dev",
   resumePath: "/resume/shivam-jha-resume.pdf",
-  status: "Open to backend, platform, and infrastructure roles.",
+  status: "Open to backend, DevOps, cloud, and platform roles.",
   availability: "Open to work · Immediately",
   heroBadges: [
     "Bengaluru, India",
-    "Backend + DevOps",
-    "Kubernetes",
-    "Systems notes",
+    "Backend + DevOps + Cloud",
+    "Kubernetes + CNCF",
+    "OSS contributor",
   ],
   keywords: [
     "Shivam Jha",
     "backend engineer",
+    "DevOps engineer",
     "cloud engineer",
-    "distributed systems",
+    "cloud infrastructure",
     "Kubernetes",
-    "DevOps",
+    "CNCF",
+    "open source",
+    "OSS contributor",
     "platform engineering",
+    "infrastructure engineer",
     "databases",
-    "paper implementations",
     "technical writing",
   ],
   hero: {
     eyebrow: "Hi, I’m Shivam.",
     intro:
-      "Backend + DevOps. I ship fast, deploy things, break them, fix the sharp edges, and move again.",
+      "I build backend services, automate delivery, and work close to cloud infrastructure and Kubernetes.",
     subcopy:
-      "Mostly into APIs, CI/CD, containers, Kubernetes, distributed systems, and figuring out how the system actually behaves under pressure.",
+      "My work sits around APIs, CI/CD, containers, AWS, Kubernetes, observability, and open source in the CNCF ecosystem. I care about systems that are simple to run, easy to debug, and clear under pressure.",
   },
   currentFocus: [
     {
-      title: "Distributed systems by building",
+      title: "Backend services and APIs",
       description:
-        "Reading papers, then implementing the part that looks too clean in the diagram.",
+        "Designing service boundaries, request flows, background jobs, and data paths that stay readable in production.",
       detail:
-        "Current threads: replication, leases, retries, leader election, consistency, and failure paths.",
+        "Current threads: REST APIs, queues, retries, idempotency, Postgres, Redis, and clean service ownership.",
     },
     {
-      title: "Kubernetes internals",
+      title: "DevOps and cloud delivery",
       description:
-        "Digging into the control-plane bits that decide what lives, what gets cleaned up, and what keeps reconciling.",
+        "Building deployment paths that make releases predictable and failures visible early.",
       detail:
-        "Current threads: controllers, owner references, finalizers, admission, policy engines, and rollout safety.",
+        "Current threads: CI/CD, Docker, AWS, Terraform, Linux, rollout checks, environment setup, and operational hygiene.",
     },
     {
-      title: "Backend runtime behavior",
+      title: "Kubernetes and CNCF OSS",
       description:
-        "Following requests past the happy path: queues, retries, DB writes, timeouts, and cleanup.",
+        "Working with Kubernetes behavior and open source tools where controllers, policies, and runtime state matter.",
       detail:
-        "Current threads: Postgres-backed queues, idempotency, dead letters, Redis, LSM trees, and latency spikes.",
+        "Current threads: Kyverno, controllers, owner references, admission paths, policy cleanup, observability, and contributor workflows.",
     },
   ],
   about: {
     summary:
-      "I like startup-style engineering: own the problem, ship the fix, watch the system, then tighten it.",
+      "I work across backend engineering, DevOps, cloud infrastructure, and open source in the CNCF ecosystem.",
     paragraphs: [
-      "Right now: backend engineering, DevOps, CI/CD, Docker environments, AWS setup, and Kubernetes policy work. I like small teams, fast loops, and systems where ownership is not split across five meetings.",
-      "I care about APIs that are easy to run, deploys that fail early, logs that say something useful, and infra that a tired engineer can still reason about.",
-      "I am actively reading and building around distributed systems, Kubernetes internals, databases, queues, retries, and failure handling. Theory is useful. Running code is where it gets honest.",
+      "I build and operate backend systems with the infrastructure around them: APIs, workers, databases, containers, CI/CD, cloud setup, and deployment workflows.",
+      "I like engineering work where ownership is clear. A service should be understandable, a deploy should be repeatable, and a failure should leave enough signal to act on.",
+      "A large part of my focus is Kubernetes and CNCF open source. I have worked around Kyverno, controllers, admission paths, ownership, cleanup behavior, and the small details that decide how a cluster behaves.",
+      "I write notes from real implementation work: what was built, what failed, what was fixed, and what made the system easier to run afterward.",
     ],
     principles: [
-      "Ship small. Verify fast. Keep the rollback path real.",
-      "If a deploy can fail, make the failure obvious before prod.",
-      "If I cannot reproduce the bug, I do not understand it yet.",
-      "Read the paper, build the toy version, then find where the abstraction leaks.",
+      "Keep services simple enough to operate.",
+      "Make deploys repeatable and rollback paths real.",
+      "Prefer clear logs, metrics, and checks over guesswork.",
+      "Use cloud and Kubernetes primitives before adding extra layers.",
+      "Treat open source work with the same care as production work.",
     ],
   },
   skills: {
@@ -85,33 +90,33 @@ export const siteConfig = {
         items: ["TypeScript", "Go", "Python", "C++", "SQL", "Bash"],
       },
       {
-        label: "Frontend",
-        items: ["React", "Next.js", "GraphQL", "REST"],
-      },
-      {
         label: "Backend",
-        items: ["Gin", "Fiber", "PostgreSQL", "Redis", "Kafka", "RabbitMQ", "gRPC"],
+        items: ["REST", "GraphQL", "gRPC", "Gin", "Fiber", "Node.js", "PostgreSQL"],
       },
       {
-        label: "Cloud and infrastructure",
+        label: "DevOps and delivery",
+        items: ["Docker", "Docker Compose", "Jenkins", "GitHub Actions", "CI/CD", "Linux"],
+      },
+      {
+        label: "Cloud and platform",
         items: [
-          "Docker",
-          "Kubernetes",
           "AWS",
           "Terraform",
           "Ansible",
-          "CI/CD",
+          "Kubernetes",
+          "Helm",
+          "Nginx",
         ],
       },
       {
-        label: "Observability and operations",
-        items: ["Prometheus", "OpenTelemetry", "Datadog", "Grafana", "Linux"],
+        label: "CNCF and operations",
+        items: ["Kyverno", "Controllers", "Prometheus", "OpenTelemetry", "Grafana", "Policy engines"],
       },
     ],
   },
   contact: {
-    title: "Send the problem.",
+    title: "Got any idea, let's talk.",
     description:
-      "Backend, DevOps, infra, queues, clusters, or weird production behavior. Send context. I will read it.",
+      "If you have an opportunity, a question, or just want to say hi, feel free to reach out. I’m always open to connecting with fellow engineers, discussing potential collaborations, or sharing insights on backend systems, DevOps, cloud infrastructure, and Kubernetes.",
   },
 } as const;

@@ -4,8 +4,8 @@ import { getPaperNotes } from "@/lib/content";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Papers",
-  description: "Paper implementations and reading notes focused on distributed systems, databases, and infrastructure.",
+  title: "Notes",
+  description: "Implementation notes focused on backend systems, infrastructure, and cloud-native engineering.",
   pathname: "/papers",
 });
 
@@ -19,18 +19,18 @@ export default async function PapersPage() {
   return (
     <div className="space-y-8 pb-12">
       <PageHeader
-        eyebrow="Papers"
-        title="Implementations and reading notes"
-        description="A place to turn foundational systems papers into working intuition through code, notes, and design reflection."
+        eyebrow="Notes"
+        title="Implementation notes and engineering reads"
+        description="A place for practical notes from backend, infrastructure, and cloud-native work."
       />
 
       <section className="content-width space-y-4">
         <div className="max-w-2xl space-y-2">
           <h2 className="font-heading text-2xl font-medium tracking-[-0.04em] text-foreground">
-            Paper implementations
+            Implementations
           </h2>
           <p className="text-sm leading-7 text-muted-foreground">
-            Rebuilding classic ideas to understand their tradeoffs more concretely.
+            Small builds that make system behavior, tradeoffs, and operational limits easier to reason about.
           </p>
         </div>
         <PaperList papers={implementationPapers} />
@@ -39,10 +39,10 @@ export default async function PapersPage() {
       <section className="content-width space-y-4">
         <div className="max-w-2xl space-y-2">
           <h2 className="font-heading text-2xl font-medium tracking-[-0.04em] text-foreground">
-            Papers I read
+            Reading notes
           </h2>
           <p className="text-sm leading-7 text-muted-foreground">
-            Reading notes from papers that continue to shape how I reason about systems.
+            Notes from engineering papers and docs that shape how I design and operate systems.
           </p>
         </div>
         <PaperList papers={readingNotes} />

@@ -6,7 +6,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "About",
-  description: "Current work, technical focus, and engineering notes.",
+  description: "Backend, DevOps, cloud, and CNCF ecosystem work.",
   pathname: "/about",
 });
 
@@ -15,7 +15,7 @@ export default function AboutPage() {
     <div className="space-y-12 pb-12">
       <PageHeader
         eyebrow="About"
-        title="Backend and infra work, written plainly."
+        title="Backend, DevOps, cloud, and CNCF work"
         description={siteConfig.about.summary}
       />
 
@@ -60,7 +60,7 @@ export default function AboutPage() {
         <div className="max-w-2xl space-y-3">
           <p className="eyebrow">Experience snapshot</p>
           <h2 className="font-heading text-3xl font-medium tracking-[-0.05em] text-foreground">
-            Work that changed how I build
+            Work that shaped how I operate systems
           </h2>
         </div>
         <div className="mt-8 grid gap-5 lg:grid-cols-3">

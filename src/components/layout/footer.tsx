@@ -12,7 +12,7 @@ export function Footer() {
           <span className="font-heading text-[0.72rem] uppercase tracking-[0.18em] text-foreground">
             {siteConfig.name}
           </span>{" "}
-          personal engineering notebook
+          © {new Date().getFullYear()}. All rights reserved.
         </p>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           {navigationItems.map((item) => (

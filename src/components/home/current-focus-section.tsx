@@ -6,7 +6,7 @@ export function CurrentFocusSection() {
   return (
     <SectionShell
       title="About"
-      description="What I am building, reading, and debugging right now."
+      description="The backend, DevOps, cloud, and CNCF work I focus on."
     >
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
         <div className="space-y-5 text-[1rem] leading-8 text-foreground/84">
@@ -30,7 +30,7 @@ export function CurrentFocusSection() {
         </div>
 
         <div className="space-y-4 border-t border-border/60 pt-6 lg:border-t-0 lg:border-l lg:pl-8">
-          <p className="eyebrow">Current focus</p>
+            <p className="eyebrow">Engineering focus</p>
           {siteConfig.currentFocus.map((item, index) => (
             <article
               key={item.title}
