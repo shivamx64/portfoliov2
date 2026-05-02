@@ -1,4 +1,7 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import type { GitHubContributionsResponse } from "@/types/github";
 
@@ -6,6 +9,7 @@ type GitHubContributionGraphProps = {
   contributions: GitHubContributionsResponse;
 };
 
+const CONTRIBUTIONS_REFRESH_INTERVAL = 1000 * 60 * 5;
 const weekdayLabels = ["", "Mon", "", "Wed", "", "Fri", ""];
 const darkEmptyContributionColor = "oklch(0.105 0.008 255)";
 const legendColors = [
@@ -39,6 +43,13 @@ function getContributionDarkColor(count: number, color: string) {
   return count === 0 ? darkEmptyContributionColor : color;
 }
 
+function formatUpdatedAt(date: Date) {
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(date);
+}
+
 function getMonthLabel(
   contributions: GitHubContributionsResponse,
   weekIndex: number,
@@ -66,12 +77,74 @@ function getMonthLabel(
 export function GitHubContributionGraph({
   contributions,
 }: GitHubContributionGraphProps) {
+  const [currentContributions, setCurrentContributions] = useState(contributions);
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+
+  const refreshContributions = useCallback(async () => {
+    try {
+      const response = await fetch("/api/github/contributions", {
+        cache: "no-store",
+      });
+
+      if (!response.ok) {
+        return;
+      }
+
+      const nextContributions =
+        (await response.json()) as GitHubContributionsResponse;
+
+      setCurrentContributions(nextContributions);
+      setUpdatedAt(new Date());
+    } catch {
+      // Keep the last successful graph visible if GitHub is temporarily slow.
+    }
+  }, []);
+
+  useEffect(() => {
+    const initialRefresh = window.setTimeout(refreshContributions, 0);
+
+    const interval = window.setInterval(
+      refreshContributions,
+      CONTRIBUTIONS_REFRESH_INTERVAL,
+    );
+
+    return () => {
+      window.clearTimeout(initialRefresh);
+      window.clearInterval(interval);
+    };
+  }, [refreshContributions]);
+
+  useEffect(() => {
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === "visible") {
+        void refreshContributions();
+      }
+    };
+
+    document.addEventListener("visibilitychange", refreshWhenVisible);
+    window.addEventListener("focus", refreshWhenVisible);
+
+    return () => {
+      document.removeEventListener("visibilitychange", refreshWhenVisible);
+      window.removeEventListener("focus", refreshWhenVisible);
+    };
+  }, [refreshContributions]);
+
+  const updatedLabel = useMemo(() => {
+    return updatedAt ? `Updated ${formatUpdatedAt(updatedAt)}` : null;
+  }, [updatedAt]);
+
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:items-end sm:justify-between">
         <p>
-          {contributions.totalContributions.toLocaleString("en-US")}{" "}
+          {currentContributions.totalContributions.toLocaleString("en-US")}{" "}
           contributions in the last year
+          {updatedLabel ? (
+            <span className="ml-2 text-xs text-muted-foreground/75">
+              {updatedLabel}
+            </span>
+          ) : null}
         </p>
         <div className="flex items-center gap-2 text-[0.7rem]">
           <span>Less</span>
@@ -95,15 +168,15 @@ export function GitHubContributionGraph({
       <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
         <div
           className="min-w-max"
-          aria-label={`${contributions.totalContributions} GitHub contributions in the last year`}
+          aria-label={`${currentContributions.totalContributions} GitHub contributions in the last year`}
         >
           <div className="ml-9 grid grid-flow-col auto-cols-[12px] gap-1.5 text-[0.68rem] text-muted-foreground">
-            {contributions.weeks.map((week, weekIndex) => (
+            {currentContributions.weeks.map((week, weekIndex) => (
               <span
                 key={`${weekIndex}-${week.contributionDays[0]?.date ?? "empty"}`}
                 className="h-4 whitespace-nowrap"
               >
-                {getMonthLabel(contributions, weekIndex)}
+                {getMonthLabel(currentContributions, weekIndex)}
               </span>
             ))}
           </div>
@@ -118,7 +191,7 @@ export function GitHubContributionGraph({
             </div>
 
             <div className="grid grid-flow-col auto-cols-[12px] gap-1.5">
-              {contributions.weeks.map((week, weekIndex) => (
+              {currentContributions.weeks.map((week, weekIndex) => (
                 <div
                   key={`${weekIndex}-${week.contributionDays[0]?.date ?? "week"}`}
                   className="grid grid-rows-7 gap-1.5"
