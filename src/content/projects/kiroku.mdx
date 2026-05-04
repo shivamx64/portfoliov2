@@ -1,41 +1,65 @@
 ---
 title: Kiroku
-excerpt: A working notebook for build logs, architecture notes, debugging trails, postmortems, and essays that start messy.
-publishedAt: "2025-11-14"
+excerpt: A developer timeline system that rebuilds the day from GitHub activity, contribution patterns, and other time-based signals.
+publishedAt: "2026-03-11"
 coverImage: "/images/projects/kiroku.png"
 tags:
-  - technical writing
-  - knowledge systems
   - developer experience
+  - productivity systems
+  - backend
 featured: true
-status: In active use
+status: In Progress
 role: Builder and user
-timeline: 2024 - Present
+timeline: 2026 - Present
 stack:
   - Next.js
-  - MDX
   - TypeScript
-  - Search indexing
+  - Supabase
+  - PostgreSQL
+  - Go
+  - Gin
 links:
   - label: GitHub
     href: https://github.com/example/kiroku
   - label: Blog
     href: /blog/distributed-systems/raft-timeouts-in-practice
 metrics:
-  - Keeps rough implementation notes close to the final writeup.
-  - Preserves the debugging trail instead of only showing the clean ending.
+  - Reconstructs daily and weekly developer activity from scattered signals.
+  - Normalizes raw GitHub data into readable timeline blocks.
 ---
 
-## What makes it useful
+## What it is
 
-Kiroku solves a small annoying problem: engineering notes get scattered. Build logs live in one place, architecture notes in another, and the useful detail disappears before the writeup happens.
+Kiroku is a developer-focused timeline system. The basic question is simple: what did I actually do today?
 
-I built it as a working notebook for project logs, postmortems, reading notes, and longer technical pieces. The goal is memory, not a perfect CMS.
+It is not a note-taking app. It pulls activity from the places where engineering work already leaves traces, then tries to rebuild the shape of the day from those traces.
 
-## Product principle
+## Problem it solves
 
-The system has to stay light enough to use while I am still debugging. A rough note should be able to turn into a public article without being rewritten from zero.
+Developers lose track of time because work is split across commits, PRs, reviews, meetings, debugging, and context switching. A commit says something changed, but it rarely explains how long the work took, what interrupted it, or what happened between two useful commits.
 
-## Why it belongs in the portfolio
+Kiroku tries to make that invisible work easier to inspect. It aggregates signals, reconstructs a timeline, and gives a daily or weekly view of where time actually went.
 
-It reflects how I work: build the thing, leave a trail, come back later, and make the useful parts readable.
+## How it works
+
+The system fetches GitHub activity, contribution patterns, and project events, then normalizes them into a common activity model. From there it maps events into timeline blocks: coding sessions, PR work, review windows, quiet gaps, and possible context switches.
+
+The timeline is intentionally approximate. The goal is not perfect surveillance. The goal is to turn scattered developer activity into something useful enough to reason about.
+
+## How I built it
+
+Kiroku is built with Next.js App Router, TypeScript, Supabase, PostgreSQL, and GitHub API integration. The backend handles fetching, normalization, persistence, and aggregation. The frontend focuses on daily and weekly views that make the reconstructed timeline readable without pretending the data is cleaner than it is.
+
+Most of the interesting work is in the data shaping layer: taking raw GitHub events, commits, PR activity, and contribution data, then converting them into blocks that feel closer to actual work sessions.
+
+## Interesting challenges
+
+GitHub data is useful, but incomplete. A commit might represent ten minutes of work or three hours of debugging. A PR update might be the result of focused implementation, review feedback, or cleanup after a meeting.
+
+That made the core tradeoff accuracy versus usability. Kiroku has to handle ambiguous data, avoid overclaiming, and still produce a timeline that helps. I had to think about developer activity as data: what signals are trustworthy, what should be inferred carefully, and where the UI should admit uncertainty.
+
+## Why I built it
+
+I built Kiroku because I kept ending days with a vague sense that I had been busy, but no clear picture of where the time went. The work was real, but the record of it was fragmented.
+
+It is not a polished SaaS yet. It is an evolving system built from a real problem I had, used by me first, and shaped around the uncomfortable truth that developer work leaves messy signals.
