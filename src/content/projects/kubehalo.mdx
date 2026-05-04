@@ -1,11 +1,12 @@
 ---
 title: KubeHalo
-excerpt: "A Kubernetes toolkit for making cluster operations explicit: checks, guardrails, rollout steps, and rollback assumptions."
+excerpt: "A Kubernetes-native autoscaling control plane built around custom ScalePolicy resources and Prometheus-driven scaling decisions."
 publishedAt: "2026-03-12"
 tags:
   - kubernetes
-  - platform engineering
-  - control planes
+  - Go
+  - control-plane
+  - systems
 featured: true
 status: Active build
 role: Creator and maintainer
@@ -13,7 +14,8 @@ timeline: 2025 - Present
 stack:
   - Go
   - Kubernetes
-  - Helm
+  - client-go
+  - CRDs
   - Prometheus
 links:
   - label: GitHub
@@ -21,23 +23,56 @@ links:
   - label: Read the contact page
     href: /contact
 metrics:
-  - Turns repeated bootstrap and rollout steps into workflows you can inspect.
-  - Keeps safety checks next to the operation instead of burying them in docs or shell history.
+  - Reconciles ScalePolicy resources into workload replica decisions.
+  - Separates metrics collection, scaling logic, validation, and orchestration.
 ---
 
-## Why I built it
+## What it is
 
-KubeHalo started from a familiar problem: cluster operations drift into scripts, notes, Slack messages, and muscle memory. That works until someone has to repeat the same change under pressure.
+KubeHalo is a custom control plane for autoscaling Kubernetes workloads from Prometheus metrics.
 
-I built it to encode common Kubernetes workflows with explicit checks and rollback assumptions. The point is not to hide Kubernetes. The point is to make the dangerous parts visible before they bite.
+It is built from scratch using Kubernetes controller patterns. Users define scaling behavior through a `ScalePolicy` custom resource, and the controller turns that policy plus live metrics into replica changes.
 
-## Core ideas
+## Problem it solves
 
-- Keep the control flow readable.
-- Put safety checks next to the action they protect.
-- Use Kubernetes primitives first.
-- Avoid building a fake platform before the workflow is understood.
+The default HPA is useful, but it can feel shallow when scaling logic needs more control. Metric flexibility is constrained, behavior is spread across Kubernetes defaults, and the decision path can be hard to shape for application-specific workloads.
 
-## What this implementation explores
+KubeHalo gives explicit scaling rules, Prometheus-backed metric queries, and finer control over how scaling decisions are computed and applied.
 
-The interesting part is the line between useful automation and a platform nobody can debug. This project explores reconciliation, rollout checks, release flow, and how much opinion belongs in a small internal tool.
+## How it works
+
+A user creates a `ScalePolicy` for a workload. The controller watches those policies, reads the current workload state from the cluster, pulls metrics from Prometheus, computes the desired replica count, and applies the scaling decision back to Kubernetes.
+
+The flow is intentionally boring: observe state, compare it with desired behavior, make the smallest safe change, repeat.
+
+## Architecture overview
+
+`ScalePolicy` is the API contract. It defines the target workload, metric query, thresholds, replica bounds, and scaling behavior.
+
+The controller owns the reconciliation loop. It uses informer-based watching to react to policy and workload changes without polling everything blindly.
+
+The Prometheus client is the metrics source. The scaling engine translates metric samples and policy rules into desired replica counts. The admission webhook validates policies before they enter the cluster. The API server gives a visibility layer for inspecting policies and decisions.
+
+Those pieces are kept separate so metrics fetching, scaling math, validation, and orchestration can change without turning the controller into one large function.
+
+## How I built it
+
+KubeHalo is written in Go using `client-go`, Kubernetes APIs, CRDs, and Prometheus integration. I designed the `ScalePolicy` API first, then built the controller around reconciliation instead of one-off commands.
+
+The internal packages are split around responsibility: Kubernetes clients and informers, Prometheus queries, scaling logic, admission validation, and API visibility. The main engineering work was structuring a small control plane from scratch without hiding the Kubernetes model underneath it.
+
+## Technical challenges
+
+Cluster state and metric state do not arrive at the same time. The controller has to work with stale informer cache data, delayed metrics, and workloads that may change between evaluation and update.
+
+The hard part is translating metric queries into scaling decisions without creating aggressive loops. KubeHalo needs bounds, stabilization, cooldown behavior, and rate limits so one noisy metric does not thrash a Deployment.
+
+The CRD also has to be flexible without being dangerous. Prometheus queries need validation at the admission layer, replica bounds need to be enforced, and ambiguous policies should fail early instead of producing surprising scale events.
+
+## Current limitations
+
+Deployment scaling is the only fully supported workload path right now.
+
+StatefulSet support is not implemented yet.
+
+Cooldown and evaluation timing exist in the design, but are not fully enforced across every reconciliation path.
