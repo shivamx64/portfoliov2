@@ -1,5 +1,9 @@
+import { ArrowUpRight } from "lucide-react";
+
 import { PageHeader } from "@/components/shared/page-header";
 import { ProjectList } from "@/components/projects/project-list";
+import { buttonVariants } from "@/components/ui/button";
+import { siteConfig } from "@/config/site";
 import { getProjects } from "@/lib/content";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -11,6 +15,7 @@ export const metadata = buildPageMetadata({
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
+  const githubUrl = `https://github.com/${siteConfig.githubUsername}`;
 
   return (
     <div className="space-y-8 pb-12">
@@ -21,6 +26,17 @@ export default async function ProjectsPage() {
       />
       <div className="content-width">
         <ProjectList projects={projects} />
+        <div className="mt-7 flex justify-center">
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={buttonVariants({ variant: "outline" })}
+          >
+            View all projects
+            <ArrowUpRight className="size-4" />
+          </a>
+        </div>
       </div>
     </div>
   );
