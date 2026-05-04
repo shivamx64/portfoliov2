@@ -2,7 +2,7 @@ import { siteConfig } from "@/config/site";
 import type { BlogCategory } from "@/types/blog";
 
 export const blogConfig = {
-  title: "Engineering Notes",
+  title: "Engineering Blog",
   description:
     "Notes from backend work, DevOps, cloud infrastructure, Kubernetes, and CNCF open source work.",
   basePath: "/blog",
