@@ -84,7 +84,7 @@ export function ContactForm() {
     >
       <div
         aria-hidden="true"
-        className="absolute left-[-9999px] top-auto size-px overflow-hidden"
+        className="absolute -left-2499.75 top-auto size-px overflow-hidden"
       >
         <Label htmlFor="website">Website</Label>
         <Input
