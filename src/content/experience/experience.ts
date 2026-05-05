@@ -4,7 +4,7 @@ export const experienceEntries: ExperienceEntry[] = [
   {
     company: "Confidential Startup",
     role: "DevOps Intern",
-    location: "New Delhi, India (Hybrid)",
+    location: "IIT Delhi, New Delhi (Hybrid)",
     period: "Feb 2025 - Jun 2025",
     summary:
       "Handled infrastructure, Kubernetes operations, and CI/CD workflows with a production mindset around reliability, backups, and security hardening.",

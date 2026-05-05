@@ -10,7 +10,7 @@ export function ContactCtaSection() {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px]">
         <div className="space-y-4">
           <p className="eyebrow">Contact</p>
-          <h2 className="font-heading text-3xl font-medium tracking-[-0.05em] text-foreground sm:text-[2.2rem]">
+          <h2 className="font-heading text-3xl font-medium tracking-tighter text-foreground sm:text-[2.2rem]">
             {siteConfig.contact.title}
           </h2>
           <p className="max-w-2xl text-[0.98rem] leading-8 text-muted-foreground">
