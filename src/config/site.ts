@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Shivam Jha",
   firstName: "Shivam",
-  role: "Backend, DevOps, and cloud engineer",
+  role: "Backend Engineering, DevOps & Cloud engineer",
   title:
     "Backend, DevOps, and cloud engineer working across APIs, infrastructure, Kubernetes, and CNCF ecosystem tools.",
   shortTitle: "Backend, DevOps, cloud, and CNCF ecosystem",
@@ -18,8 +18,8 @@ export const siteConfig = {
   heroBadges: [
     "Bengaluru, India",
     "Backend + DevOps + Cloud",
-    "Kubernetes + CNCF",
     "OSS contributor",
+    "Technical writer",
   ],
   keywords: [
     "Shivam Jha",
