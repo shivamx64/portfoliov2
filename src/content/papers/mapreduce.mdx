@@ -1,31 +1,28 @@
 ---
-title: MapReduce, rebuilt for intuition
-excerpt: Re-implementing the MapReduce execution model to understand scheduling, fault handling, and data locality from the inside.
+title: "MapReduce: Simplified Data Processing on Large Clusters"
+excerpt: A clean model for splitting large jobs across machines while still handling scheduling, retries, stragglers, and locality.
 publishedAt: "2026-03-28"
 tags:
   - distributed systems
-  - paper implementation
+  - data processing
   - mapreduce
 featured: true
-kind: implementation
+kind: reading-note
 sourcePaper: "Jeffrey Dean and Sanjay Ghemawat, MapReduce: Simplified Data Processing on Large Clusters"
 paperUrl: https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/
-focus: Task scheduling, worker coordination, and failure recovery.
-links:
-  - label: Original paper
-    href: https://research.google/pubs/mapreduce-simplified-data-processing-on-large-clusters/
+focus: How a simple programming model hides the hard parts of distributed execution.
 ---
 
-## What I wanted to learn
+## Why I read it
 
-MapReduce looks simple when presented as a programming model. The implementation details are where the real lessons live: how work gets partitioned, how failed tasks are replayed, and why data locality matters once scale appears.
+MapReduce is useful because it turns a messy cluster problem into a narrow interface. The paper is not only about map and reduce. It is about what the runtime has to own so users can write simple jobs.
 
-## Main takeaways
+## What it teaches
 
-- The scheduler is where a large part of system behavior becomes visible.
-- Simple retry rules become expensive if task bookkeeping is weak.
-- Good intermediate file conventions make the overall system easier to reason about.
+- Scheduling becomes part of the system contract.
+- Retries are only simple if task state is tracked clearly.
+- Data locality matters once the dataset is too large to move casually.
 
-## Where I would take it next
+## What I am watching
 
-The next iteration would add clearer worker heartbeats and more realistic handling of stragglers so I can compare coordinator behavior under skewed workloads.
+The interesting part is how much complexity sits below a small API. That pattern shows up everywhere in backend infrastructure.

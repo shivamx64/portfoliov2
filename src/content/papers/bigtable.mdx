@@ -1,0 +1,28 @@
+---
+title: "Bigtable: A Distributed Storage System for Structured Data"
+excerpt: A storage paper about tablets, locality, compaction, and the shape of a distributed database built on top of a file system.
+publishedAt: "2026-02-15"
+tags:
+  - databases
+  - distributed systems
+  - storage
+featured: true
+kind: reading-note
+sourcePaper: "Fay Chang et al., Bigtable: A Distributed Storage System for Structured Data"
+paperUrl: https://research.google/pubs/pub27898
+focus: Tablet serving, compaction, data locality, and structured storage at large scale.
+---
+
+## Why I read it
+
+Bigtable sits in the space between filesystems and databases. It is a good paper for understanding how storage layout, serving paths, and compaction policy shape database behavior.
+
+## What it teaches
+
+- Data model choices show up later as operational behavior.
+- Tablet splitting and locality matter for scale and predictable access.
+- Compaction is not cleanup. It is part of the read and write path.
+
+## What I am watching
+
+I am reading it for the backend intuition: how storage engines make tradeoffs before the application ever sends a query.

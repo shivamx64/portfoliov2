@@ -13,9 +13,7 @@ export function PaperCard({ paper }: PaperCardProps) {
     <article className="grid gap-5 border-t border-border/60 py-6 first:border-t-0 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-10">
       <div className="space-y-4">
         <div className="space-y-2">
-          <p className="eyebrow">
-            {paper.kind === "implementation" ? "Implementation" : "Reading note"}
-          </p>
+          <p className="eyebrow">Paper</p>
           <h3 className="font-heading text-[1.35rem] font-medium tracking-[-0.04em] text-foreground">
             <Link href={paper.url} className="hover:text-primary">
               {paper.title}

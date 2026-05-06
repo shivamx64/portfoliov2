@@ -23,6 +23,11 @@ import type {
 import { extractHeadings } from "@/lib/mdx";
 
 const CONTENT_ROOT = path.join(process.cwd(), "src", "content");
+const collectionBasePaths = {
+  blog: "/blog",
+  papers: "/papershelf",
+  projects: "/projects",
+} as const;
 
 const linkSchema = z.object({
   href: z.string(),
@@ -117,7 +122,7 @@ async function readCollection<TFrontmatter extends { publishedAt: string; draft?
         ...parsedFrontmatter.data,
         slug,
         slugSegments,
-        url: `/${collection}/${slug}`,
+        url: `${collectionBasePaths[collection]}/${slug}`,
         readingTime: readingTime(content).text,
         headings: extractHeadings(content),
         content,
@@ -140,14 +145,6 @@ export async function getFeaturedPaperNotes(limit = 3) {
   const papers = await getPaperNotes();
 
   return papers.filter((paper) => paper.featured).slice(0, limit);
-}
-
-export async function getFeaturedPaperImplementations(limit = 3) {
-  const papers = await getPaperNotes();
-
-  return papers
-    .filter((paper) => paper.kind === "implementation")
-    .slice(0, limit);
 }
 
 export async function getFeaturedProjects(limit = 3) {

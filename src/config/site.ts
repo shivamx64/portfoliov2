@@ -59,7 +59,7 @@ export const siteConfig = {
         "Current threads: CI/CD, Docker, AWS, Terraform, Linux, environments, rollbacks, secrets, and deploy hygiene.",
     },
     {
-      title: "Kubernetes and infrastructure",
+      title: "Kubernetes and Infrastructure",
       description:
         "Working with clusters, workloads, networking, metrics, and the infrastructure around services after they leave localhost.",
       detail:

@@ -1,0 +1,28 @@
+---
+title: "The Google File System"
+excerpt: A practical look at building a distributed file system for large sequential workloads, failures, chunk servers, and master metadata.
+publishedAt: "2026-02-08"
+tags:
+  - distributed systems
+  - storage
+  - infrastructure
+featured: true
+kind: reading-note
+sourcePaper: "Sanjay Ghemawat, Howard Gobioff, and Shun-Tak Leung, The Google File System"
+paperUrl: https://research.google/pubs/the-google-file-system/
+focus: Fault-tolerant storage, chunk placement, master metadata, and large-scale file access patterns.
+---
+
+## Why I read it
+
+GFS is useful because it starts from the workload instead of pretending to be a generic filesystem. It accepts large files, append-heavy writes, and constant machine failure as normal.
+
+## What it teaches
+
+- System design gets simpler when the workload is honest.
+- A single master can work if the responsibilities are narrow and cached well.
+- Failure handling is not an add-on. It is the shape of the storage system.
+
+## What I am watching
+
+The paper is a good reminder that infrastructure choices make more sense when tied to real access patterns, not abstract elegance.

@@ -4,23 +4,23 @@ import type { ContentEntry, PaperFrontmatter } from "@/types/content";
 
 import { PaperList } from "@/components/papers/paper-list";
 
-type PaperImplementationsSectionProps = {
+type PapershelfSectionProps = {
   papers: Array<ContentEntry<PaperFrontmatter>>;
 };
 
-export function PaperImplementationsSection({
+export function PapershelfSection({
   papers,
-}: PaperImplementationsSectionProps) {
+}: PapershelfSectionProps) {
   return (
     <SectionShell
       id="papers"
-      title="Engineering notes"
-      description="Notes and small implementations that sharpen backend, infrastructure, and cloud-native judgment."
+      title="Papershelf"
+      description="Research papers I’m reading to build better intuition around backend systems, distributed systems, databases, and infrastructure."
     >
       <PaperList papers={papers} />
       <div className="mt-6">
-        <ButtonLink href="/papers" variant="outline">
-          View all notes
+        <ButtonLink href="/papershelf" variant="outline">
+          View Papershelf
         </ButtonLink>
       </div>
     </SectionShell>
