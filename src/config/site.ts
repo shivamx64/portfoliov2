@@ -91,7 +91,7 @@ export const siteConfig = {
       },
       {
         label: "Backend",
-        items: ["REST", "GraphQL", "gRPC", "Gin", "Fiber", "Node.js", "PostgreSQL"],
+        items: ["REST", "GraphQL", "gRPC", "Kafka", "Gin", "Fiber", "Node.js", "PostgreSQL"],
       },
       {
         label: "DevOps and delivery",
@@ -109,8 +109,8 @@ export const siteConfig = {
         ],
       },
       {
-        label: "CNCF and operations",
-        items: ["Kyverno", "Controllers", "Prometheus", "OpenTelemetry", "Grafana", "Policy engines"],
+        label: "CNCF and OSS",
+        items: ["Kyverno","Project Contour", "Meshery", "and exploring more..."],
       },
     ],
   },

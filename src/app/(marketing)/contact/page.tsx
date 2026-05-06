@@ -14,8 +14,8 @@ export default function ContactPage() {
     <div className="space-y-8 pb-12">
       <PageHeader
         eyebrow="Contact"
-        title="Send the useful context"
-        description="Backend roles, DevOps work, cloud infrastructure, Kubernetes, CNCF tooling, or a production problem worth solving."
+        title="Let's get in touch."
+        description="Whether you have a question about my work, want to chat about backend systems or cloud infrastructure, or just want to say hi, feel free to reach out using the form or the links on this page."
       />
       <section className="content-width grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         <ContactForm />
