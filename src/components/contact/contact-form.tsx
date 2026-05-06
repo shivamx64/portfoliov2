@@ -160,7 +160,7 @@ export function ContactForm() {
           <p
             className={
               status.type === "success"
-                ? "text-sm text-muted-foreground"
+                ? "text-sm text-green-600 dark:text-green-400"
                 : "text-sm text-destructive"
             }
           >
