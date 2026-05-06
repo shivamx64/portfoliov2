@@ -3,11 +3,11 @@ export const siteConfig = {
   firstName: "Shivam",
   role: "Backend Engineering, DevOps & Cloud engineer",
   title:
-    "Backend, DevOps, and cloud engineer working across APIs, infrastructure, Kubernetes, and CNCF ecosystem tools.",
+    "Cloud Native backend engineer building APIs, delivery paths, and infrastructure around Kubernetes and the CNCF ecosystem.",
   shortTitle: "Backend, DevOps, cloud, and CNCF ecosystem",
   description:
     "Portfolio and engineering notes on backend systems, DevOps, cloud infrastructure, Kubernetes, and open source work in the CNCF ecosystem.",
-  email: "shivam@engineering-notes.dev",
+  email: "shivamkumar87148@gmail.com",
   location: "Bengaluru, India",
   githubUsername:
     process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "ShivamJha2436",

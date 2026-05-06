@@ -1,12 +1,11 @@
 import { siteConfig } from "@/config/site";
 import type { SocialLink } from "@/types/nav";
 
-const socialUsername = siteConfig.githubUsername;
 const linkedInUrl =
-  process.env.NEXT_PUBLIC_LINKEDIN_URL ?? `https://www.linkedin.com/in/${socialUsername}`;
-const xUrl = process.env.NEXT_PUBLIC_X_URL ?? `https://x.com/${socialUsername}`;
+  process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "https://www.linkedin.com/in/shivamkj1/";
+const xUrl = process.env.NEXT_PUBLIC_X_URL ?? "https://x.com/Hi_Shivam_";
 const leetcodeUrl =
-  process.env.NEXT_PUBLIC_LEETCODE_URL ?? `https://leetcode.com/u/${socialUsername}`;
+  process.env.NEXT_PUBLIC_LEETCODE_URL ?? "https://leetcode.com/u/Shivam_Kumar_/";
 
 export const socialLinks: SocialLink[] = [
   {
@@ -28,7 +27,7 @@ export const socialLinks: SocialLink[] = [
   {
     href: xUrl,
     label: "X",
-    value: `@${socialUsername}`,
+    value: "@Hi_Shivam_",
     external: true,
     icon: "x",
     showInHero: true,
