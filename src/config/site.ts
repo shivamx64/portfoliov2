@@ -23,64 +23,71 @@ export const siteConfig = {
   ],
   keywords: [
     "Shivam Jha",
-    "backend engineer",
+    "Backend engineer",
     "DevOps engineer",
-    "cloud engineer",
-    "cloud infrastructure",
+    "Cloud engineer",
+    "Cloud infrastructure",
     "Kubernetes",
     "CNCF",
-    "open source",
+    "Open Source",
     "OSS contributor",
     "platform engineering",
-    "infrastructure engineer",
-    "databases",
-    "technical writing",
+    "Infrastructure engineer",
+    "Databases",
+    "Technical writing",
   ],
   hero: {
     eyebrow: "Hi, I’m Shivam.",
     intro:
-      "I build backend services, automate delivery, and work close to cloud infrastructure and Kubernetes.",
+      "I am currently focused on Backend engineering, DevOps, and Cloud Infrastructure.",
     subcopy:
-      "My work sits around APIs, CI/CD, containers, AWS, Kubernetes, observability, and open source in the CNCF ecosystem. I care about systems that are simple to run, easy to debug, and clear under pressure.",
+      "My work sits around APIs, CI/CD, containers, AWS, Kubernetes, observability, and open source in the CNCF ecosystem. I ship fast, take ownership of my work, and stay close to the mess to fix it when it breaks.",
   },
   currentFocus: [
     {
-      title: "Backend services and APIs",
+      title: "Backend Engineering",
       description:
-        "Designing service boundaries, request flows, background jobs, and data paths that stay readable in production.",
+        "Building APIs, workers, queues, and data paths that can take real traffic and still be understood when something breaks.",
       detail:
-        "Current threads: REST APIs, queues, retries, idempotency, Postgres, Redis, and clean service ownership.",
+        "Current threads: REST, Queues, Retries, Idempotency, Postgres, Redis, Kafka, Background jobs, and clean service ownership.",
     },
     {
-      title: "DevOps and cloud delivery",
+      title: "DevOps and cloud",
       description:
-        "Building deployment paths that make releases predictable and failures visible early.",
+        "Shipping code through CI/CD, containers, cloud infrastructure, and release flows that do not fall apart under pressure.",
       detail:
-        "Current threads: CI/CD, Docker, AWS, Terraform, Linux, rollout checks, environment setup, and operational hygiene.",
+        "Current threads: CI/CD, Docker, AWS, Terraform, Linux, environments, rollbacks, secrets, and deploy hygiene.",
     },
     {
-      title: "Kubernetes and CNCF OSS",
+      title: "Kubernetes and infrastructure",
       description:
-        "Working with Kubernetes behavior and open source tools where controllers, policies, and runtime state matter.",
+        "Working with clusters, workloads, networking, metrics, and the infrastructure around services after they leave localhost.",
       detail:
-        "Current threads: Kyverno, controllers, owner references, admission paths, policy cleanup, observability, and contributor workflows.",
+        "Current threads: Kubernetes, Helm, Nginx, Prometheus, observability, scaling behavior, and cluster operations.",
+    },
+    {
+      title: "Distributed systems",
+      description:
+        "Learning the parts of backend engineering that show up when one machine is not enough and failure becomes normal.",
+      detail:
+        "Current threads: replication, consensus, partitions, queues, caches, timeouts, coordination, and failure modes.",
     },
   ],
   about: {
     summary:
-      "I work across backend engineering, DevOps, cloud infrastructure, and open source in the CNCF ecosystem.",
+      "I build backend systems and the infrastructure around them. APIs, jobs, deploys, logs, cloud setup, and the boring parts that keep a product alive.",
     paragraphs: [
-      "I build and operate backend systems with the infrastructure around them: APIs, workers, databases, containers, CI/CD, cloud setup, and deployment workflows.",
-      "I like engineering work where ownership is clear. A service should be understandable, a deploy should be repeatable, and a failure should leave enough signal to act on.",
-      "A large part of my focus is Kubernetes and CNCF open source. I have worked around Kyverno, controllers, admission paths, ownership, cleanup behavior, and the small details that decide how a cluster behaves.",
-      "I write notes from real implementation work: what was built, what failed, what was fixed, and what made the system easier to run afterward.",
+      "I like startup-style engineering: move fast, own the mess, ship the thing, then stay close enough to fix it when it breaks.",
+      "Most of my work sits around backend services, CI/CD, containers, Kubernetes, cloud infrastructure, observability, and deployment reliability.",
+      "I care about systems that are simple to run. A deploy should be boring. Logs should tell the truth. Infra should be understandable when the pager is loud.",
+      "I also read and learn backend engineering and distributed systems deeply, because the theory starts to matter once real systems hit load, latency, and failure.",
     ],
     principles: [
-      "Keep services simple enough to operate.",
-      "Make deploys repeatable and rollback paths real.",
-      "Prefer clear logs, metrics, and checks over guesswork.",
-      "Use cloud and Kubernetes primitives before adding extra layers.",
-      "Treat open source work with the same care as production work.",
+      "Build small enough to debug.",
+      "Ship fast, but keep a rollback path.",
+      "Automate the boring failure-prone work.",
+      "Make logs, metrics, and alerts useful before they are needed.",
+      "Use simple infrastructure until the system earns more complexity.",
     ],
   },
   skills: {
