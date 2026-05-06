@@ -11,13 +11,26 @@ type GitHubContributionGraphProps = {
 
 const CONTRIBUTIONS_REFRESH_INTERVAL = 1000 * 60 * 5;
 const weekdayLabels = ["", "Mon", "", "Wed", "", "Fri", ""];
-const darkEmptyContributionColor = "oklch(0.105 0.008 255)";
+const darkContributionColors = {
+  empty: "#161b22",
+  level1: "#0e4429",
+  level2: "#006d32",
+  level3: "#26a641",
+  level4: "#39d353",
+} as const;
+const darkContributionColorByLightColor = new Map([
+  ["#ebedf0", darkContributionColors.empty],
+  ["#9be9a8", darkContributionColors.level1],
+  ["#40c463", darkContributionColors.level2],
+  ["#30a14e", darkContributionColors.level3],
+  ["#216e39", darkContributionColors.level4],
+]);
 const legendColors = [
-  { light: "#ebedf0", dark: darkEmptyContributionColor },
-  { light: "#9be9a8", dark: "#9be9a8" },
-  { light: "#40c463", dark: "#40c463" },
-  { light: "#30a14e", dark: "#30a14e" },
-  { light: "#216e39", dark: "#216e39" },
+  { light: "#ebedf0", dark: darkContributionColors.empty },
+  { light: "#9be9a8", dark: darkContributionColors.level1 },
+  { light: "#40c463", dark: darkContributionColors.level2 },
+  { light: "#30a14e", dark: darkContributionColors.level3 },
+  { light: "#216e39", dark: darkContributionColors.level4 },
 ];
 const monthFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -40,7 +53,14 @@ function getContributionTitle(count: number, date: string) {
 }
 
 function getContributionDarkColor(count: number, color: string) {
-  return count === 0 ? darkEmptyContributionColor : color;
+  if (count === 0) {
+    return darkContributionColors.empty;
+  }
+
+  return (
+    darkContributionColorByLightColor.get(color.toLowerCase()) ??
+    darkContributionColors.level1
+  );
 }
 
 function formatUpdatedAt(date: Date) {
@@ -152,7 +172,7 @@ export function GitHubContributionGraph({
             <span
               key={color.light}
               aria-hidden="true"
-              className="size-3 rounded-[2px] border border-black/5 bg-[var(--contribution-color)] dark:border-white/10 dark:bg-[var(--contribution-dark-color)]"
+              className="size-3 rounded-[2px] border border-black/5 bg-[var(--contribution-color)] dark:border-[#30363d] dark:bg-[var(--contribution-dark-color)]"
               style={
                 {
                   "--contribution-color": color.light,
@@ -207,7 +227,7 @@ export function GitHubContributionGraph({
                         day.contributionCount,
                         day.date,
                       )}
-                      className="size-3 rounded-[2px] border border-black/5 bg-[var(--contribution-color)] dark:border-white/10 dark:bg-[var(--contribution-dark-color)]"
+                      className="size-3 rounded-[2px] border border-black/5 bg-[var(--contribution-color)] dark:border-[#30363d] dark:bg-[var(--contribution-dark-color)]"
                       style={{
                         "--contribution-color": day.color,
                         "--contribution-dark-color": getContributionDarkColor(
