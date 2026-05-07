@@ -14,7 +14,7 @@ export default function AboutPage() {
   return (
     <div className="space-y-12 pb-12">
       <PageHeader
-        eyebrow="About"
+        eyebrow="About Me"
         title="Backend, DevOps, cloud, and CNCF work"
         description={siteConfig.about.summary}
       />
