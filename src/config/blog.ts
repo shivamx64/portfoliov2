@@ -4,7 +4,7 @@ import type { BlogCategory } from "@/types/blog";
 export const blogConfig = {
   title: "Engineering Blog",
   description:
-    "Writing about backend engineering, DevOps, cloud infrastructure, Kubernetes, and the systems that power the internet.",
+    "Hey there! I'm sharing my thoughts and learnings on backend engineering, distributed systems, DevOps, and Cloud Native topics. I write about the challenges I encounter, the solutions I find, and the insights I gain from building and operating production systems. Whether you're a fellow engineer or just curious about how the backend works, I hope you find something interesting here. Thanks for reading!",
   basePath: "/blog",
   siteUrl: siteConfig.url,
   categories: [
