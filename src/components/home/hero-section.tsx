@@ -82,9 +82,9 @@ export function HeroSection() {
             </div>
 
             <div className="space-y-3 border-t border-border/60 pt-4 text-sm text-muted-foreground lg:border-t-0 lg:border-l lg:pl-6">
-              <p className="eyebrow">Current lane</p>
-              <p>Building backend services, delivery pipelines, and cloud-native infrastructure with Kubernetes in the loop.</p>
-              <p>Current loop: design, ship, observe, tighten the weak points, and document the operational lesson.</p>
+              <p className="eyebrow">Current Focus</p>
+              <p>Learning a lot about backend engineering, distributed systems and cloud infrastructure.</p>
+              <p>Current loop: design, build, ship, observe, and improve.</p>
               <div className="space-y-2 border-t border-border/60 pt-4">
                 {siteConfig.heroBadges.slice(1).map((badge) => (
                   <p key={badge} className="font-mono text-xs text-foreground/72">

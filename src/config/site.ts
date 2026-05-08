@@ -10,7 +10,7 @@ export const siteConfig = {
   email: "shivamkumar87148@gmail.com",
   location: "Bengaluru, India",
   githubUsername:
-    process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "ShivamJha2436",
+    process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "shivamx64",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://shivam-jha.dev",
   resumePath: "/resume/shivam-jha-resume.pdf",
   status: "Open to backend, DevOps, cloud, and platform roles.",
