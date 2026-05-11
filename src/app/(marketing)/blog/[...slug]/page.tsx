@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 import { BlogLayout } from "@/components/blog/blog-layout";
 import { BlogPostHeader } from "@/components/blog/blog-post-header";
@@ -6,10 +7,13 @@ import { BlogShare } from "@/components/blog/blog-share";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { MdxContent } from "@/components/shared/mdx-content";
 import { getBlogCategoryByLabel } from "@/config/blog";
-import { getAdjacentBlogPosts, getBlogPostBySlug, getBlogPosts } from "@/lib/blog";
+import {
+  getAdjacentBlogPosts,
+  getBlogPostBySlug,
+  getBlogPosts,
+} from "@/lib/blog";
 import { buildPageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/utils";
-import Link from "next/link";
 
 export const dynamicParams = false;
 
@@ -62,36 +66,59 @@ export default async function BlogPostPage({
 
   return (
     <BlogLayout activeCategory={category?.slug}>
-      <article className="space-y-10 py-2 sm:py-4">
+      <article className="space-y-8 py-4 sm:space-y-10 sm:py-8 lg:space-y-14">
         <Link
           href="/blog"
-          className="inline-flex items-center border-b border-border/70 pb-1 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+          className="inline-flex items-center pb-1 text-xs sm:text-sm font-mono uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
         >
           ← Back to writings
         </Link>
+
         <BlogPostHeader post={post} />
-        <div className="grid gap-10 xl:grid-cols-[minmax(0,3fr)_220px]">
-          <div className="min-w-0 max-w-3xl">
-            <MdxContent source={post.content} />
+
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_240px] xl:gap-16">
+          <div className="min-w-0 w-full max-w-none lg:max-w-3xl">
+            {/* Mobile / tablet TOC */}
+            {post.headings?.length > 0 && (
+              <div className="mb-8 rounded-xl border border-border/50 p-4 lg:hidden">
+                <TableOfContents headings={post.headings} />
+              </div>
+            )}
+
+            <div className="prose prose-neutral dark:prose-invert max-w-none">
+              <MdxContent source={post.content} />
+            </div>
           </div>
-          <div className="hidden xl:block">
+
+          {/* Desktop sticky TOC */}
+          <aside className="hidden lg:block">
             <div className="sticky top-24">
               <TableOfContents headings={post.headings} />
             </div>
-          </div>
+          </aside>
         </div>
+
         <div className="max-w-3xl space-y-8">
           <BlogShare title={post.title} url={url} />
-          <nav className="grid gap-4 border-y border-border/60 py-5 sm:grid-cols-2">
+
+          <nav className="grid gap-6 border-y border-border/60 py-6 sm:grid-cols-2">
             {adjacentPosts.previous ? (
-              <AdjacentPostLink label="Previous" href={adjacentPosts.previous.url}>
+              <AdjacentPostLink
+                label="Previous"
+                href={adjacentPosts.previous.url}
+              >
                 {adjacentPosts.previous.title}
               </AdjacentPostLink>
             ) : (
               <div />
             )}
+
             {adjacentPosts.next ? (
-              <AdjacentPostLink label="Next" href={adjacentPosts.next.url} align="right">
+              <AdjacentPostLink
+                label="Next"
+                href={adjacentPosts.next.url}
+                align="right"
+              >
                 {adjacentPosts.next.title}
               </AdjacentPostLink>
             ) : null}
@@ -116,10 +143,14 @@ function AdjacentPostLink({
   return (
     <Link
       href={href}
-      className={align === "right" ? "space-y-1 text-left sm:text-right" : "space-y-1"}
+      className={`block rounded-lg p-3 transition-colors hover:bg-muted/40 ${
+        align === "right"
+          ? "space-y-2 text-left sm:text-right"
+          : "space-y-2"
+      }`}
     >
       <span className="eyebrow">{label}</span>
-      <span className="block text-sm leading-6 text-muted-foreground hover:text-foreground">
+      <span className="block text-sm sm:text-base leading-6 text-muted-foreground hover:text-foreground">
         {children}
       </span>
     </Link>
