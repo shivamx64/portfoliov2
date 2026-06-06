@@ -14,9 +14,9 @@ export function HeroSection() {
         <div className="paper-dots h-24 border-b border-border/60 sm:h-28" />
         <div className="grid gap-8 py-8 md:grid-cols-[124px_minmax(0,1fr)] md:items-start">
           <div className="space-y-3">
-            <div className="relative aspect-square w-28 overflow-hidden rounded-2xl border border-border/70 bg-muted sm:w-32">
+            <div className="relative aspect-square w-28 overflow-hidden rounded-full border border-border/70 bg-muted sm:w-32">
             <Image
-              src="/images/profile/avatar.jpg"
+              src="/images/profile/avatar.png"
               alt={`${siteConfig.name} profile`}
               fill
               className="object-cover"
