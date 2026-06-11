@@ -29,7 +29,7 @@ export function BlogShare({ title, url }: BlogShareProps) {
         <div>
           <p className="eyebrow">Share</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Send this note to someone thinking about the same problem.
+            Send this article to someone thinking about the same topic.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">

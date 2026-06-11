@@ -12,7 +12,7 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <nav className="border-y border-border/60 py-4" aria-label="Article sections">
-      <p className="eyebrow mb-3">In this note</p>
+      <p className="eyebrow mb-3">Table of Contents</p>
       <ol className="space-y-2 text-sm text-muted-foreground">
         {headings.map((heading) => (
           <li key={heading.id} className={cn(heading.level === 3 && "pl-4")}>
