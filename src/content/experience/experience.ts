@@ -2,23 +2,6 @@ import type { ExperienceEntry } from "@/types/content";
 
 export const experienceEntries: ExperienceEntry[] = [
   {
-    company: "Confidential Startup",
-    role: "DevOps Intern",
-    location: "IIT Delhi, New Delhi (Hybrid)",
-    period: "Feb 2025 - Jun 2025",
-    summary:
-      "Handled infrastructure, Kubernetes operations, and CI/CD workflows with a production mindset around reliability, backups, and security hardening.",
-    highlights: [
-      "Managed on-prem Kubernetes and AWS EKS clusters running production workloads.",
-      "Provisioned infrastructure with Terraform and scripts, then deployed multi-container services with Docker Compose.",
-      "Integrated Trivy scans into CI/CD pipelines, improving release reliability by roughly 40%.",
-      "Built backup and restore workflows into the system instead of treating recovery as an afterthought.",
-      "Hardened infrastructure by closing exposed ports and automating kube-bench CIS checks.",
-    ],
-    stack: ["Kubernetes", "EKS", "Terraform", "Docker", "CI/CD", "Trivy", "AWS"],
-    confidential: true,
-  },
-  {
     company: "Linux Foundation Mentorship - Kyverno",
     role: "LFX Mentee",
     location: "Remote (San Jose, USA org)",
