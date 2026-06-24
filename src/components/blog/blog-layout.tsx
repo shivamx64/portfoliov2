@@ -7,9 +7,29 @@ type BlogLayoutProps = {
 
 export function BlogLayout({ children, activeCategory }: BlogLayoutProps) {
   return (
-    <div className="content-width-wide grid gap-8 pb-12 lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-10">
-      <BlogSidebar activeCategory={activeCategory} />
-      <main className="min-w-0">{children}</main>
+    <div
+      className="
+        content-width-wide 
+        grid 
+        grid-cols-1 
+        gap-6 
+        pb-10 
+        sm:gap-8 
+        lg:grid-cols-[240px_minmax(0,1fr)] 
+        lg:gap-10
+      "
+    >
+      {/* Sidebar */}
+      <aside className="order-2 lg:order-1">
+        <div className="lg:sticky lg:top-24">
+          <BlogSidebar activeCategory={activeCategory} />
+        </div>
+      </aside>
+
+      {/* Main content */}
+      <main className="order-1 min-w-0">
+        {children}
+      </main>
     </div>
   );
 }
