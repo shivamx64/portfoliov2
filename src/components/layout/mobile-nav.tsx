@@ -2,19 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, BookOpen, FolderGit2, FileText, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { navigationItems } from "@/config/nav";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
-
-import {
-  BookOpen,
-  FolderGit2,
-  FileText,
-  Mail,
-} from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
   Blog: <BookOpen className="size-4" />,
@@ -37,63 +30,60 @@ export function MobileNav() {
         {open ? <X className="size-4" /> : <Menu className="size-4" />}
       </button>
 
-      {/* Dropdown */}
+      {/* Overlay (prevents interaction + gives focus) */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className="
-              absolute right-0 mt-3 w-64
-              rounded-2xl border border-border/60
-              bg-background/95 backdrop-blur-xl
-              shadow-lg
-              overflow-hidden
-              z-50
-            "
-          >
-            {/* Header */}
-            <div className="border-b border-border/60 px-4 py-3">
-              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                Explore
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Projects, writing, contact
-              </p>
-            </div>
+          <>
+            <motion.div
+              className="fixed inset-0 z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+            />
 
-            {/* Nav items */}
-            <div className="flex flex-col p-2">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground transition hover:bg-muted/60 hover:text-foreground"
-                  )}
-                >
-                  {iconMap[item.label]}
-                  <div className="flex flex-col">
-                    <span className="text-sm">{item.label}</span>
-                    <span className="text-[11px] text-muted-foreground">
-                      {item.description}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Footer */}
-            <div className="flex items-center justify-between border-t border-border/60 px-4 py-3">
-              <div className="text-xs text-muted-foreground">
-                Theme
+            {/* Dropdown panel */}
+            <motion.div
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="
+                fixed top-20 left-1/2 -translate-x-1/2
+                w-[min(92vw,420px)]
+                rounded-2xl border border-border/60
+                bg-background/95 backdrop-blur-xl
+                shadow-xl
+                z-50
+                overflow-hidden
+              "
+            >
+              {/* Nav items */}
+              <div className="flex flex-col p-2">
+                {navigationItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-muted-foreground transition hover:bg-muted/60 hover:text-foreground"
+                    )}
+                  >
+                    {iconMap[item.label]}
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
               </div>
-              <ThemeToggle />
-            </div>
-          </motion.div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between border-t border-border/60 px-4 py-3">
+                <span className="text-xs text-muted-foreground">
+                  Theme
+                </span>
+                <ThemeToggle />
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>
