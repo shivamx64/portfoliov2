@@ -27,7 +27,7 @@ export const socialLinks: SocialLink[] = [
   {
     href: xUrl,
     label: "X",
-    value: "@Hi_Shivam_",
+    value: "@shivamx64",
     external: true,
     icon: "x",
     showInHero: true,
