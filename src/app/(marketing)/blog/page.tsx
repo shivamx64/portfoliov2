@@ -18,7 +18,7 @@ export default async function BlogPage() {
     <div className="space-y-8">
       <PageHeader
         eyebrow="Blog"
-        title="My Writings on Backend Engineering, Distributed Systems, DevOps and Cloud Native topics"
+        title="My Writings"
         description={blogConfig.description}
       />
       <BlogLayout>
