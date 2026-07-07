@@ -45,6 +45,12 @@ export const blogConfig = {
         "AWS pieces, managed services, infrastructure choices, permissions, and cost-aware setup.",
     },
     {
+      label: "Computer Networking",
+      slug: "computer-networking",
+      description:
+        "Protocols, architectures, performance, and the fundamentals of how networks work.",
+    },
+    {
       label: "Kubernetes",
       slug: "kubernetes",
       description:
