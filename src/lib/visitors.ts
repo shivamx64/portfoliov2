@@ -14,7 +14,13 @@ type SupabaseErrorLike = {
 };
 
 function getRequestIp(request: NextRequest) {
-  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "";
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  const realIp = request.headers.get("x-real-ip");
+  const connectingIp = request.headers.get("cf-connecting-ip");
+
+  return (
+    forwardedFor?.split(",")[0]?.trim() ?? realIp?.trim() ?? connectingIp?.trim() ?? ""
+  );
 }
 
 function getUtcDateKey(date = new Date()) {

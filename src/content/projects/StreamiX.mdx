@@ -22,11 +22,13 @@ stack:
   - RabbitMQ
   - PostgreSQL
   - Redis
-  - MinIO
+  - S3
   - Next.js
 links:
   - label: GitHub
     href: https://github.com/shivamx64/streamix
+  - label: Live
+    href: https://streami-x-lilac.vercel.app/
 metrics:
   - Distributed job scheduling across independent transcoding workers.
   - Event-driven architecture with asynchronous processing and fault tolerance.
@@ -66,45 +68,30 @@ Each component is independently deployable and horizontally scalable, allowing c
 The API Gateway provides endpoints for authentication, uploads, and media management.
 
 RabbitMQ serves as the messaging backbone, decoupling user requests from long-running transcoding operations.
-
 Worker Services consume jobs asynchronously and perform FFmpeg transcoding inside isolated containers, enabling multiple videos to be processed concurrently across different nodes.
-
 MinIO stores original uploads and generated media assets, while PostgreSQL maintains persistent metadata, processing history, user information, and job state.
-
 Redis provides high-speed caching, rate limiting, and temporary coordination where persistent storage is unnecessary.
-
 A Next.js dashboard offers operational visibility into uploads, job progress, worker health, processing metrics, and completed assets.
-
 Each service owns a single responsibility, allowing components to evolve independently without tightly coupling the system.
 
 ## How I built it
 
 StreamiX is built using Go, Kubernetes, Docker, RabbitMQ, PostgreSQL, Redis, MinIO, FFmpeg, and Next.js.
-
 The project began with designing the overall system architecture before writing implementation code. Instead of focusing on individual APIs first, I designed service boundaries, communication patterns, and data flow to ensure the platform remains scalable as new capabilities are introduced.
-
 The backend follows a modular architecture where uploads, scheduling, transcoding, storage, metadata management, and orchestration remain isolated. Services communicate primarily through asynchronous messaging rather than direct dependencies, making the system more resilient to failures and easier to scale horizontally.
-
 The frontend is designed as an operational dashboard for monitoring uploads, processing pipelines, worker utilization, and system health.
 
 ## Technical challenges
 
 Distributed transcoding introduces significantly more complexity than simply executing FFmpeg.
-
 Workers must process jobs safely even if instances fail unexpectedly. Jobs require retries, backoff strategies, dead-letter queues, and idempotent execution to avoid duplicate processing.
-
 Large media files introduce storage, networking, and bandwidth challenges. Efficient uploads, streaming downloads, multipart transfers, and temporary file management are essential for maintaining throughput.
-
 Long-running processing jobs also require progress tracking, cancellation support, timeout handling, and resource isolation to prevent individual workloads from monopolizing compute resources.
-
 Observability is equally important. Logging, metrics, distributed tracing, and health monitoring provide visibility into queue depth, worker utilization, processing latency, and failure rates across the platform.
 
 ## Current limitations
 
 Video transcoding is currently the primary supported workflow.
-
 Adaptive bitrate streaming (HLS and DASH) generation is planned but not yet implemented.
-
 Automatic worker autoscaling based on queue depth is part of the roadmap and will allow the platform to dynamically adjust processing capacity under varying workloads.
-
 Multi-region deployments, CDN integration, and advanced scheduling strategies are planned as future enhancements.
