@@ -5,7 +5,7 @@ const linkedInUrl =
   process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "https://www.linkedin.com/in/shivamkj1/";
 const xUrl = process.env.NEXT_PUBLIC_X_URL ?? "https://x.com/shivamx64";
 const leetcodeUrl =
-  process.env.NEXT_PUBLIC_LEETCODE_URL ?? "https://leetcode.com/u/Shivam_Kumar_/";
+  process.env.NEXT_PUBLIC_LEETCODE_URL ?? "https://leetcode.com/u/shivamx64/";
 
 export const socialLinks: SocialLink[] = [
   {
