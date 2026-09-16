@@ -122,7 +122,7 @@ export async function getGitHubContributions(): Promise<GitHubContributionsRespo
   try {
     response = await fetch(GITHUB_GRAPHQL_ENDPOINT, {
       method: "POST",
-      cache: "no-store",
+      cache: "force-cache",
       headers: {
         Accept: "application/vnd.github+json",
         Authorization: `Bearer ${token}`,

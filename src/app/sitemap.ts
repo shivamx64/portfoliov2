@@ -5,6 +5,8 @@ import { getBlogPosts } from "@/lib/blog";
 import { getPaperNotes, getProjects } from "@/lib/content";
 import { absoluteUrl } from "@/lib/utils";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, papers, projects] = await Promise.all([
     getBlogPosts(),
